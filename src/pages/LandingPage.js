@@ -9,6 +9,8 @@ const HeroSection = styled.section`
   text-align: center;
   background-color: #003366;
   color: #ffffff;
+  height:100vh;
+  font-size: 1rem;
 `;
 
 const FeaturesSection = styled.section`
@@ -16,6 +18,7 @@ const FeaturesSection = styled.section`
   justify-content: space-around;
   padding: 2rem 0;
   flex-wrap: wrap;
+  cursor:pointer;
 `;
 
 const LandingPage = () => (
