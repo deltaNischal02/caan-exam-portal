@@ -1,4 +1,3 @@
-// TrainingMaterialsPage.jsx
 
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -85,7 +84,7 @@ const MaterialCard = styled.div`
   .image-container {
     width: 100%;
     height: 180px;
-    background-image: url(${(props) => props.imageUrl});
+    background-image: url(${(props) => props.imageurl});
     background-size: cover;
     background-position: center;
   }
@@ -137,7 +136,7 @@ const trainingMaterials = [
     title: "Fire Safety Training",
     topic: "Safety",
     description: "Learn the essential protocols and procedures to ensure fire safety in the workplace.",
-    imageUrl: "/images/fire-safety.jpg",
+    imageurl: "/images/fire-safety.jpg",
     resources: [
       { name: "Guide Document", link: "#", type: "PDF" },
       { name: "Instructional Video", link: "#", type: "Video" },
@@ -148,7 +147,7 @@ const trainingMaterials = [
     title: "Aircraft Handling Procedures",
     topic: "Operations",
     description: "Detailed procedures and best practices for efficient aircraft handling.",
-    imageUrl: "/images/aircraft-handling.jpg",
+    imageurl: "/images/aircraft-handling.jpg",
     resources: [
       { name: "Procedure Manual", link: "#", type: "PDF" },
       { name: "Checklist", link: "#", type: "Document" },
@@ -159,7 +158,7 @@ const trainingMaterials = [
     title: "Customer Service Excellence",
     topic: "Customer Service",
     description: "Strategies and techniques to provide outstanding customer service.",
-    imageUrl: "/images/customer-service.jpg",
+    imageurl: "/images/customer-service.jpg",
     resources: [
       { name: "Training Slides", link: "#", type: "Presentation" },
      { name: "Role-play Scenarios", link: "#", type: "Document" },
@@ -170,7 +169,7 @@ const trainingMaterials = [
     title: "Customer Service Excellence",
     topic: "Customer Service",
     description: "Strategies and techniques to provide outstanding customer service.",
-    imageUrl: "/images/customer-service.jpg",
+    imageurl: "/images/customer-service.jpg",
     resources: [
       { name: "Training Slides", link: "#", type: "Presentation" },
       { name: "Role-play Scenarios", link: "#", type: "Document" },
@@ -232,7 +231,7 @@ const TrainingMaterialsPage = () => {
           {filteredMaterials.map((material) => (
             <MaterialCard
               key={material.id}
-              imageUrl={material.imageUrl}
+              imageurl={material.imageurl}
               onClick={() => handleCardClick(material)}
             >
               <div className="image-container" />
@@ -253,7 +252,7 @@ const TrainingMaterialsPage = () => {
       {selectedMaterial && (
         <Modal onClose={closeModal}>
           <h2>{selectedMaterial.title}</h2>
-          <img src={selectedMaterial.imageUrl} alt={selectedMaterial.title} style={{ width: "100%", borderRadius: "8px", marginBottom: "1rem" }} />
+          <img src={selectedMaterial.imageurl} alt={selectedMaterial.title} style={{ width: "100%", borderRadius: "8px", marginBottom: "1rem" }} />
           <p>{selectedMaterial.description}</p>
           <h3>Resources:</h3>
           <ul>
