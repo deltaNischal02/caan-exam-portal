@@ -1,14 +1,16 @@
-
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-const CardWrapper = styled.div`
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
+const CardContainer = styled(motion.div)`
   background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 1rem;
+  width: 300px;
+  text-align: center;
+  cursor: pointer;
 `;
 
 const IconWrapper = styled.div`
@@ -16,22 +18,21 @@ const IconWrapper = styled.div`
   margin-bottom: 1rem;
 `;
 
-const CardTitle = styled.h3`
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+const Title = styled.h2`
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
-const CardDescription = styled.p`
+const Description = styled.p`
   font-size: 1rem;
-  color: #666;
 `;
 
-const Card = ({ icon, title, description }) => (
-  <CardWrapper>
+const Card = ({ icon, title, description, whileHover }) => (
+  <CardContainer whileHover={whileHover}>
     <IconWrapper>{icon}</IconWrapper>
-    <CardTitle>{title}</CardTitle>
-    <CardDescription>{description}</CardDescription>
-  </CardWrapper>
+    <Title>{title}</Title>
+    <Description>{description}</Description>
+  </CardContainer>
 );
 
 export default Card;
