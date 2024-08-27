@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FaDownload, FaSearch, FaFilter } from "react-icons/fa";
@@ -120,6 +119,23 @@ const MaterialCard = styled.div`
         font-size: 0.85rem;
       }
     }
+
+    .download-button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #3f51b5;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
   }
 `;
 
@@ -138,41 +154,8 @@ const trainingMaterials = [
     description: "Learn the essential protocols and procedures to ensure fire safety in the workplace.",
     imageurl: "/images/fire-safety.jpg",
     resources: [
-      { name: "Guide Document", link: "#", type: "PDF" },
+      { name: "Guide Document", link: "public/pdfs/FYPPolicy2024_91644.pdf", type: "PDF" }, // Updated link for the PDF
       { name: "Instructional Video", link: "#", type: "Video" },
-    ],
-  },
-  {
-    id: 2,
-    title: "Aircraft Handling Procedures",
-    topic: "Operations",
-    description: "Detailed procedures and best practices for efficient aircraft handling.",
-    imageurl: "/images/aircraft-handling.jpg",
-    resources: [
-      { name: "Procedure Manual", link: "#", type: "PDF" },
-      { name: "Checklist", link: "#", type: "Document" },
-    ],
-  },
-  {
-    id: 3,
-    title: "Customer Service Excellence",
-    topic: "Customer Service",
-    description: "Strategies and techniques to provide outstanding customer service.",
-    imageurl: "/images/customer-service.jpg",
-    resources: [
-      { name: "Training Slides", link: "#", type: "Presentation" },
-     { name: "Role-play Scenarios", link: "#", type: "Document" },
-    ],
-  },
-  {
-    id: 4,
-    title: "Customer Service Excellence",
-    topic: "Customer Service",
-    description: "Strategies and techniques to provide outstanding customer service.",
-    imageurl: "/images/customer-service.jpg",
-    resources: [
-      { name: "Training Slides", link: "#", type: "Presentation" },
-      { name: "Role-play Scenarios", link: "#", type: "Document" },
     ],
   },
   // Add more materials as needed
@@ -241,6 +224,19 @@ const TrainingMaterialsPage = () => {
                 <div className="tags">
                   <span>{material.topic}</span>
                 </div>
+                {/* Add a Download PDF button if the material has a PDF resource */}
+                
+                {material.resources.some((resource) => resource.type === "PDF") && (
+                  <a
+                    href={material.resources.find((resource) => resource.type === "PDF").link}
+                    download
+                    className="download-button"
+                    title="Download PDF"
+                  >
+                    <FaDownload />
+                    Download PDF
+                  </a>
+                )}
               </div>
             </MaterialCard>
           ))}
