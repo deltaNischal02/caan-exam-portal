@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import quizzes from '../data/quizdata'; // Adjust the import path if needed
 import QuizResult from './ResultPage';
+import { useLocation } from 'react-router-dom';
 
 const QuizContainer = styled.div`
   max-width: 600px;
@@ -107,6 +108,14 @@ const DarkModeToggle = styled.button`
 `;
 
 const QuizPage = () => {
+  const location = useLocation();
+  const { state } = location;
+  const { difficulty, numberOfQuestions, quizDuration } = state || {};
+
+  // Use these values to configure your quiz
+  console.log("Difficulty:", difficulty);
+  console.log("Number of Questions:", numberOfQuestions);
+  console.log("Quiz Duration:", quizDuration);
   const { quizId } = useParams();
   const navigate = useNavigate(); // Correctly place the hook inside the component
 
@@ -201,5 +210,4 @@ const QuizPage = () => {
     </QuizContainer>
   );
 };
-
 export default QuizPage;

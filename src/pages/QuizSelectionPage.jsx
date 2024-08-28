@@ -34,10 +34,15 @@ const QuizSelectionPage = () => {
     { id: 'caan-rules', title: 'CAAN Rules and Regulations' },
   ];
 
+  
   const handleQuizSelect = (quizId) => {
-    navigate(`/quiz/${quizId}`);
+    if (quizId === 'general-knowledge') {
+      navigate(`/quiz/${quizId}`);
+    } else {
+      navigate(`/quiz/${quizId}`);
+    }
   };
-
+  
   return (
     <QuizSelectionPageWrapper>
       <h1>Select a Quiz</h1>

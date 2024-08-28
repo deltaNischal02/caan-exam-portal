@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import { motion, useInView } from 'framer-motion';
 import { FaBook, FaCheckCircle,  FaChartLine,FaCogs } from 'react-icons/fa'; 
+
 
 // Styled components
 const HeroSection = styled(motion.section)`
@@ -55,6 +58,30 @@ const ContactSection = styled.section`
   background-color: #003366;
   color: #ffffff;
 `;
+//logout button
+const Button = styled.button`
+  color: purple;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid purple;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    background: transparent;
+    position: relative;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  &:hover {
+    background-color: white;
+  }
+`;
 
 // Text variants for animation
 const textVariants = {
@@ -72,6 +99,17 @@ const LandingPage = () => {
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.9 }); // Trigger animation when 30% of the section is in view
 
+  const { user, logout } = useAuth(); // Get user and logout from context
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  const handleLogin = () => {
+    navigate('/login');
+  };
 
 // Landing Page Component
 return (
@@ -83,6 +121,12 @@ return (
     >
       <motion.h1 variants={textVariants}>Welcome to the CAAN Employee Portal</motion.h1>
       <motion.p variants={textVariants}>Empowering CAAN Employees with Knowledge</motion.p>
+      {/* Conditionally render login/logout button */}
+      {user ? (
+          <Button onClick={handleLogout}>Logout</Button>
+        ) : (
+          <Button onClick={handleLogin}>Login</Button>
+        )}
     </HeroSection>
 
       <FeaturesTitle>Our Features</FeaturesTitle>
