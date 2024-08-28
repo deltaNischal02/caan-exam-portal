@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SignupContainer = styled.div`
@@ -33,6 +33,12 @@ const Button = styled.button`
 `;
 
 const SignupPage = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [contactNumber, setContactNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [employeeId, setEmployeeId] = useState('');
+  const [level, setLevel] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { signup } = useAuth();
@@ -40,7 +46,18 @@ const SignupPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(username, password);
+    const userData = {
+      firstName,
+      lastName,
+      contactNumber,
+      email,
+      employeeId,
+      level,
+      username,
+      password,
+    };
+    signup(userData.username, userData.password);
+    // In a real app, you'd also send userData to your backend
     navigate('/'); // Redirect to home page after signup
   };
 
@@ -48,6 +65,42 @@ const SignupPage = () => {
     <SignupContainer>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Contact Number"
+          value={contactNumber}
+          onChange={(e) => setContactNumber(e.target.value)}
+        />
+        <Input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="CAAN Employee ID"
+          value={employeeId}
+          onChange={(e) => setEmployeeId(e.target.value)}
+        />
+        <Input
+          type="text"
+          placeholder="Level"
+          value={level}
+          onChange={(e) => setLevel(e.target.value)}
+        />
         <Input
           type="text"
           placeholder="Username"
@@ -62,6 +115,9 @@ const SignupPage = () => {
         />
         <Button type="submit">Sign Up</Button>
       </form>
+      <p>
+        Already have an account? <Link to="/login">Login here</Link>
+      </p>
     </SignupContainer>
   );
 };
