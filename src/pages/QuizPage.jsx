@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import quizzes from '../data/quizdata'; // Adjust the import path if needed
 import { useUserProgress } from '../contexts/UserProgressContext';
 import ProgressBar from '../components/ProgressBar'; // Import ProgressBar
+import Loader from '../components/Loader'
+
 
 const QuizContainer = styled.div`
   max-width: 600px;
@@ -131,6 +133,7 @@ const QuizPage = () => {
   const [timeLeft, setTimeLeft] = useState(60); // 60 seconds per question
 
   const { progress, updateProgress } = useUserProgress();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!quiz) return;
@@ -147,23 +150,34 @@ const QuizPage = () => {
 
     return () => clearInterval(timer);
   }, [currentQuestionIndex, selectedOption, quiz]);
-
+  useEffect(() => {
+    // Simulate data fetching
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000); // Replace with actual data fetching logic
+  }, []);
+  // if quiz no available
   if (!quiz) {
     return <QuizContainer darkMode={darkMode}>Quiz not found!</QuizContainer>;
   }
-
+  // loader
+  if (loading) {
+    return <Loader />;
+  }
+  
+  
   const handleOptionClick = (optionId) => {
     setSelectedOption(optionId);
     setIsCorrect(optionId === quiz.questions[currentQuestionIndex].correctOptionId);
   };
-
+  
   const nextQuestion = () => {
     if (isCorrect) {
       setScore(score + 1);
     }
     setSelectedOption(null);
     setIsCorrect(null);
-
+    
     if (currentQuestionIndex < quiz.questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setTimeLeft(60);
@@ -176,20 +190,20 @@ const QuizPage = () => {
     const userAnswers = quiz.questions.map((question, index) => {
       return selectedOption === question.correctOptionId ? question.correctOptionId : null;
     });
-
+    
     // Update progress here
     updateProgress(score);
-
+    
     navigate(`/quiz/${quizId}/result`, { state: { userAnswers, score: score + (isCorrect ? 1 : 0) } });
   };
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
-
+  
   const totalQuestions = quiz.questions.length;
   const progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
-
+  
   return (
     <QuizContainer darkMode={darkMode}>
       <DarkModeToggle onClick={toggleDarkMode}>
