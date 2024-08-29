@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import quizzes from '../data/quizdata'; // Adjust the import path if needed
-import QuizResult from './ResultPage';
-import { useLocation } from 'react-router-dom';
+import { useUserProgress } from '../contexts/UserProgressContext';
+import ProgressBar from '../components/ProgressBar'; // Import ProgressBar
 
 const QuizContainer = styled.div`
   max-width: 600px;
@@ -14,6 +14,7 @@ const QuizContainer = styled.div`
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   color: ${({ darkMode }) => (darkMode ? '#ffffff' : '#333333')};
   font-family: 'Roboto', sans-serif;
+  position: relative; /* Added to accommodate the progress bar */
 `;
 
 const QuestionText = styled.h2`
@@ -116,20 +117,23 @@ const QuizPage = () => {
   console.log("Difficulty:", difficulty);
   console.log("Number of Questions:", numberOfQuestions);
   console.log("Quiz Duration:", quizDuration);
+
   const { quizId } = useParams();
-  const navigate = useNavigate(); // Correctly place the hook inside the component
+  const navigate = useNavigate();
 
   const quiz = quizzes.find(q => q.id === quizId);
 
   const [darkMode, setDarkMode] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [isCorrect, setIsCorrect] = useState(null); // To track if the selected answer is correct
+  const [isCorrect, setIsCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(60); // 60 seconds per question
 
+  const { progress, updateProgress } = useUserProgress();
+
   useEffect(() => {
-    if (!quiz) return; // If quiz is not found, do nothing
+    if (!quiz) return;
 
     const timer = setInterval(() => {
       setTimeLeft(prevTime => {
@@ -173,6 +177,9 @@ const QuizPage = () => {
       return selectedOption === question.correctOptionId ? question.correctOptionId : null;
     });
 
+    // Update progress here
+    updateProgress(score);
+
     navigate(`/quiz/${quizId}/result`, { state: { userAnswers, score: score + (isCorrect ? 1 : 0) } });
   };
 
@@ -180,12 +187,16 @@ const QuizPage = () => {
     setDarkMode(!darkMode);
   };
 
+  const totalQuestions = quiz.questions.length;
+  const progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
+
   return (
     <QuizContainer darkMode={darkMode}>
       <DarkModeToggle onClick={toggleDarkMode}>
         {darkMode ? 'Light Mode' : 'Dark Mode'}
       </DarkModeToggle>
       <Timer darkMode={darkMode}>Time left: {timeLeft} seconds</Timer>
+      <ProgressBar progress={progressPercentage} />
       <QuestionText darkMode={darkMode}>{quiz.questions[currentQuestionIndex].questionText}</QuestionText>
       <OptionsList>
         {quiz.questions[currentQuestionIndex].options.map(option => (
@@ -210,4 +221,5 @@ const QuizPage = () => {
     </QuizContainer>
   );
 };
+
 export default QuizPage;

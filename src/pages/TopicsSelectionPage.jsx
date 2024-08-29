@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Card from '../components/Card'; // Adjust the path if necessary
 import Modal from '../components/Modal'; // Import your custom Modal component
+import ProgressBar from '../components/ProgressBar';
 
 const TopicsSelectionPageWrapper = styled.div`
   padding: 2rem;
@@ -72,8 +73,12 @@ const SortSelect = styled.select`
 const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 2rem;
+  justify-content: space-between; /* Space between the cards */
+  margin-top: -5rem;
+  padding: 10rem;
+  border:3px solid black; //remove when required
+  // height:50rem;
+  // width:50rem;
 `;
 
 const PaginationWrapper = styled.div`
@@ -121,6 +126,9 @@ margin :1rem;
   }
 `;
 
+
+
+
 const TopicsSelectionPage = () => {
   const navigate = useNavigate();
   const { quizId } = useParams();
@@ -130,6 +138,10 @@ const TopicsSelectionPage = () => {
     'general-knowledge': [
       { id: 'history', title: 'History', description: 'Test your knowledge of historical events.', icon: '📜', category: 'History', imageurl: 'history.jpg', resources: [{ name: 'Resource 1', link: '#', type: 'PDF' }] },
       { id: 'geography', title: 'Geography', description: 'Explore the world with geography quizzes.', icon: '🌍', category: 'Geography', imageurl: 'geography.jpg', resources: [{ name: 'Resource 2', link: '#', type: 'Video' }] },
+      { id: 'history', title: 'History', description: 'Test your knowledge of historical events.', icon: '📜', category: 'History', imageurl: 'history.jpg', resources: [{ name: 'Resource 1', link: '#', type: 'PDF' }] },
+      { id: 'geography', title: 'Geography', description: 'Explore the world with geography quizzes.', icon: '🌍', category: 'Geography', imageurl: 'geography.jpg', resources: [{ name: 'Resource 2', link: '#', type: 'Video' }] },
+      { id: 'history', title: 'History', description: 'Test your knowledge of historical events.', icon: '📜', category: 'History', imageurl: 'history.jpg', resources: [{ name: 'Resource 1', link: '#', type: 'PDF' }] },
+      
     ],
   };
 
@@ -137,11 +149,12 @@ const TopicsSelectionPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortOption, setSortOption] = useState('Title');
   const [currentPage, setCurrentPage] = useState(1);
-  const [topicsPerPage] = useState(6);
+  const [topicsPerPage] = useState(10);
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [difficulty, setDifficulty] = useState('Easy');
   const [numberOfQuestions, setNumberOfQuestions] = useState(10);
   const [quizDuration, setQuizDuration] = useState(30);
+ 
 
   const filteredTopics = topics[quizId]?.filter((topic) =>
     topic.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
@@ -177,6 +190,8 @@ const TopicsSelectionPage = () => {
     <TopicsSelectionPageWrapper>
       
       <ConfigSection>
+        <h2>Progress Bar</h2>
+      <ProgressBar />
                   <h2>Configure Your Quiz</h2>
                   {selectedTopic && (
                     <div>
@@ -201,6 +216,8 @@ const TopicsSelectionPage = () => {
                       <StartButton onClick={handleStartQuiz}>Start Quiz</StartButton>
                     </div>
                   )}
+                  
+                  
                 </ConfigSection>
       <MainContent>
         <h1>SELECT TOPIC FOR {quizId.replace('-', ' ').toUpperCase()}</h1>
@@ -227,17 +244,20 @@ const TopicsSelectionPage = () => {
 
         {/* Cards Container */}
         <CardsContainer>
-          {currentTopics?.map((topic) => (
-            <Card
-              key={topic.id}
-              icon={topic.icon}
-              title={topic.title}
-              description={topic.description}
-              whileHover={{ scale: 1.1 }}
-              onClick={() => handleTopicSelect(topic.id)}
-            />
-          )) || <p>No topics available</p>}
-        </CardsContainer>
+      {currentTopics?.map((topic) => (
+        <Card
+          key={topic.id}
+          icon={topic.icon}
+          title={topic.title}
+          description={topic.description}
+          whileHover={{ scale: 1.1 }}
+          onClick={() => handleTopicSelect(topic.id)}
+          titleFontSize="1rem"
+          descriptionFontSize="0.8rem"
+          iconFontSize="1.2rem"
+        />
+      )) || <p>No topics available</p>}
+    </CardsContainer>
 
         {/* Pagination */}
         <PaginationWrapper>
@@ -246,6 +266,7 @@ const TopicsSelectionPage = () => {
         </PaginationWrapper>
       </MainContent>
     </TopicsSelectionPageWrapper>
+    
   );
 };
 
