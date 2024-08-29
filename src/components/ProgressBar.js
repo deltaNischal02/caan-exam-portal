@@ -13,8 +13,8 @@ const ProgressBarContainer = styled.div`
 
 const Progress = styled.div`
   width: ${({ progress }) => progress}%;
-  background-color: #76c7c0;
-  height: 20px;
+  background-color: purple;
+  height: 10px;
   border-radius: 10px;
   transition: width 0.5s;
 `;
