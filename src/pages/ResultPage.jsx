@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import quizzes from '../data/quizdata'; // Import quiz data
+import Confetti from 'react-confetti';
 
 const ResultPageWrapper = styled.div`
   padding: 2rem;
@@ -35,7 +36,6 @@ const OptionText = styled.p`
     isCorrect ? 'green' : isSelected ? 'red' : '#333'};
 `;
 
-// Styled button wrapper with animation
 const StyledWrapper = styled.div`
   margin-top: 2rem;
 
@@ -52,33 +52,17 @@ const StyledWrapper = styled.div`
     transition: all 0.4s ease;
     overflow: hidden;
     cursor: pointer;
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 8px;
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .btn:hover {
-    color: black; /* Text color on hover */
-  }
-
-  .btn::before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 0%;
-    top: 0;
-    left: 0;
-    transform: skewX(45deg);
-    background-color: purple; /* Button background color */
-    z-index: -1;
-    transition: all 0.4s ease;
-    border-radius: 8px; /* Match the button's corners */
-  }
-
-  .btn:hover::before {
-    width: 100%;
+  &:hover {
+    background-color: white;
+    color: blue;
+    border-color: blue;
   }
 `;
 
@@ -87,8 +71,27 @@ const QuizResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { userAnswers = [], score = 0 } = location.state || {};
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const currentQuiz = quizzes.find(q => q.id === quizId);
+  const totalQuestions = currentQuiz?.questions.length || 0;
+  const percentageCorrect = (score / totalQuestions) * 100;
+
+  
+// confetti
+  useEffect(() => {
+    if (percentageCorrect >= 60) {
+      setShowConfetti(true);
+
+      // Hide the confetti after 3 seconds
+      const timer = setTimeout(() => {
+        setShowConfetti(false);
+      }, 7000);
+
+      // Cleanup timer on component unmount or when `percentageCorrect` changes
+      return () => clearTimeout(timer);
+    }
+  }, [percentageCorrect]);
 
   if (!currentQuiz) {
     return (
@@ -103,9 +106,11 @@ const QuizResult = () => {
 
   return (
     <ResultPageWrapper>
+      {showConfetti && <Confetti />}
+      
       <h2>Quiz Results</h2>
-      <ScoreText score={score} total={currentQuiz.questions.length}>
-        Your score: {score} / {currentQuiz.questions.length}
+      <ScoreText score={score} total={totalQuestions}>
+        Your score: {score} / {totalQuestions}
       </ScoreText>
 
       {currentQuiz.questions.map((question, index) => (
@@ -124,7 +129,7 @@ const QuizResult = () => {
       ))}
 
       <StyledWrapper>
-        <button className="btn" onClick={() => navigate('/')}>Go Back to Quizzes</button>
+        <button className="btn" onClick={() => navigate(`/quiz/${quizId}`)}>Go Back to Quizzes</button>
       </StyledWrapper>
     </ResultPageWrapper>
   );
