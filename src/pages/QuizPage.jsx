@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import quizzes from '../data/quizdata'; // Adjust the import path if needed
+import quizzes from '../data/quizdata';
 import { useUserProgress } from '../contexts/UserProgressContext';
-import ProgressBar from '../components/ProgressBar'; // Import ProgressBar
-import Loader from '../components/Loader'
+import ProgressBar from '../components/ProgressBar';
+import Loader from '../components/Loader';
 
+const shuffleArray = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+};
 
 const QuizContainer = styled.div`
   max-width: 600px;
@@ -16,7 +19,7 @@ const QuizContainer = styled.div`
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   color: ${({ darkMode }) => (darkMode ? '#ffffff' : '#333333')};
   font-family: 'Roboto', sans-serif;
-  position: relative; /* Added to accommodate the progress bar */
+  position: relative;
 `;
 
 const QuestionText = styled.h2`
@@ -115,16 +118,12 @@ const QuizPage = () => {
   const { state } = location;
   const { difficulty, numberOfQuestions, quizDuration } = state || {};
 
-  // Use these values to configure your quiz
-  console.log("Difficulty:", difficulty);
-  console.log("Number of Questions:", numberOfQuestions);
-  console.log("Quiz Duration:", quizDuration);
-
   const { quizId } = useParams();
+  const quiz = quizzes.find((quiz) => quiz.id === quizId);
+  
   const navigate = useNavigate();
 
-  const quiz = quizzes.find(q => q.id === quizId);
-
+  const [shuffledQuiz, setShuffledQuiz] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -136,10 +135,18 @@ const QuizPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!quiz) return;
+    if (quiz) {
+      const shuffledQuestions = shuffleArray(quiz.questions).map((question) => ({
+        ...question,
+        options: shuffleArray([...question.options]),
+      }));
+      setShuffledQuiz({ ...quiz, questions: shuffledQuestions });
+    }
+  }, [quiz]);
 
+  useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(prevTime => {
+      setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
           nextQuestion();
           return 60;
@@ -149,36 +156,35 @@ const QuizPage = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [currentQuestionIndex, selectedOption, quiz]);
+  }, [currentQuestionIndex, selectedOption, shuffledQuiz]);
+
   useEffect(() => {
-    // Simulate data fetching
     setTimeout(() => {
       setLoading(false);
-    }, 3000); // Replace with actual data fetching logic
+    }, 2000);
   }, []);
-  // if quiz no available
-  if (!quiz) {
-    return <QuizContainer darkMode={darkMode}>Quiz not found!</QuizContainer>;
-  }
-  // loader
+
   if (loading) {
     return <Loader />;
   }
-  
-  
+
+  if (!shuffledQuiz) {
+    return <QuizContainer darkMode={darkMode}>Quiz not found!</QuizContainer>;
+  }
+
   const handleOptionClick = (optionId) => {
     setSelectedOption(optionId);
-    setIsCorrect(optionId === quiz.questions[currentQuestionIndex].correctOptionId);
+    setIsCorrect(optionId === shuffledQuiz.questions[currentQuestionIndex].correctOptionId);
   };
-  
+
   const nextQuestion = () => {
     if (isCorrect) {
       setScore(score + 1);
     }
     setSelectedOption(null);
     setIsCorrect(null);
-    
-    if (currentQuestionIndex < quiz.questions.length - 1) {
+
+    if (currentQuestionIndex < shuffledQuiz.questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setTimeLeft(60);
     } else {
@@ -187,23 +193,21 @@ const QuizPage = () => {
   };
 
   const finishQuiz = () => {
-    const userAnswers = quiz.questions.map((question, index) => {
+    const userAnswers = shuffledQuiz.questions.map((question, index) => {
       return selectedOption === question.correctOptionId ? question.correctOptionId : null;
     });
-    
-    // Update progress here
+
     updateProgress(score);
-    
     navigate(`/quiz/${quizId}/result`, { state: { userAnswers, score: score + (isCorrect ? 1 : 0) } });
   };
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
-  
-  const totalQuestions = quiz.questions.length;
+
+  const totalQuestions = shuffledQuiz.questions.length;
   const progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
-  
+
   return (
     <QuizContainer darkMode={darkMode}>
       <DarkModeToggle onClick={toggleDarkMode}>
@@ -211,6 +215,8 @@ const QuizPage = () => {
       </DarkModeToggle>
       <Timer darkMode={darkMode}>Time left: {timeLeft} seconds</Timer>
       <ProgressBar progress={progressPercentage} />
+      
+
       <QuestionText darkMode={darkMode}>{quiz.questions[currentQuestionIndex].questionText}</QuestionText>
       <OptionsList>
         {quiz.questions[currentQuestionIndex].options.map(option => (
