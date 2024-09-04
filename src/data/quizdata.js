@@ -85,6 +85,7 @@ const quizzes = [
     {
       id: 'caan-rules',
       title: 'CAAN Rules and Regulations',
+      difficulty:'Medium',
       questions: [
         // Your questions here
         {
@@ -104,6 +105,7 @@ const quizzes = [
     {
       id: 'training-courses',
       title: 'Training Courses',
+      difficulty:'Easy',
       questions: [
         {
           id: 1,
@@ -438,6 +440,343 @@ const quizzes = [
         
       ],
     },
+    {
+      id: 'chapter-one-rffs',
+      title: 'Airport Rescue and Fire Fighting Services',
+      difficulty:'Medium',
+      questions: [
+        {
+          id: 1,
+          questionText: 'According to the RFFS manual, what factors should be reviewed annually to ensure effectiveness?',
+          options: [
+            { id: 1, text: 'Weather conditions and flight schedules' },
+            { id: 2, text: 'Passenger satisfaction and ticket sales' },
+            { id: 3, text: 'Runway maintenance and airport budget' },
+            { id: 4, text: 'Stakeholder feedback and amendments to ICAO Annex-14' },
+          ],
+          correctOptionId: 4,
+        },
+        {
+          id: 2,
+          questionText: 'Which document prevails in case of conflict between the RFFS manual and the Airport Emergency Plan (AEP)?',
+          options: [
+            { id: 1, text: 'The RFFS manual' },
+            { id: 2, text: 'The local government directive' },
+            { id: 3, text: 'The Airport Emergency Plan (AEP)' },
+            { id: 4, text: 'The airport operations manual' },
+          ],
+          correctOptionId: 3,
+        },
+        {
+          id: 3,
+          questionText: 'What is the role of the fire station chief in the implementation of the RFFS manual?',
+          options: [
+            { id: 1, text: 'To manage airport security' },
+            { id: 2, text: 'To ensure daily routines and SOPs are followed' },
+            { id: 3, text: 'To approve amendments to the manual' },
+            { id: 4, text: 'To coordinate with mutual aid agencies' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 4,
+          questionText: 'What kind of map is essential for the RFFS to have for effective emergency response?',
+          options: [
+            { id: 1, text: 'A passenger seating chart' },
+            { id: 2, text: 'A topographical map' },
+            { id: 3, text: 'A weather map' },
+            { id: 4, text: 'A grid map showing access roads and water supplies' },
+          ],
+          correctOptionId: 4,
+        },
+        {
+          id: 5,
+          questionText: 'How should the response time for RFFS be evaluated?',
+          options: [
+            { id: 1, text: 'By comparing with other airports' },
+            { id: 2, text: 'According to ICAO standards' },
+            { id: 3, text: 'By the airport manager’s discretion' },
+            { id: 4, text: 'Based on average passenger numbers' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 6,
+          questionText: 'What should be the primary concern for RFFS during an aircraft fire?',
+          options: [
+            { id: 1, text: 'Maintaining airport cleanliness' },
+            { id: 2, text: 'Ensuring the safety and survival of passengers and crew' },
+            { id: 3, text: 'Protecting the aircraft from damage' },
+            { id: 4, text: 'Minimizing airport downtime' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 7,
+          questionText: 'Which international standards are used by the RFFS to assess its effectiveness?',
+          options: [
+            { id: 1, text: 'EASA regulations' },
+            { id: 2, text: 'ISO standards' },
+            { id: 3, text: 'ICAO Annex-14 and Airport Services Manual Part-1' },
+            { id: 4, text: 'FAA guidelines' },
+          ],
+          correctOptionId: 3,
+        },
+        {
+          id: 8,
+          questionText: 'In what circumstances should the RFFS manual be amended?',
+          options: [
+            { id: 1, text: 'After significant incidents or when new regulations are introduced' },
+            { id: 2, text: 'Every five years, regardless of changes' },
+            { id: 3, text: 'When the airport’s management changes' },
+            { id: 4, text: 'When requested by passengers' },
+          ],
+          correctOptionId: 1,
+        },
+        {
+          id: 9,
+          questionText: 'What should be included in the RFFS’s annual review?',
+          options: [
+            { id: 1, text: 'Passenger feedback and satisfaction' },
+            { id: 2, text: 'Weather data and historical records' },
+            { id: 3, text: 'Effectiveness of response times and readiness of equipment' },
+            { id: 4, text: 'Staff turnover and training costs' },
+          ],
+          correctOptionId: 3,
+        },
+        {
+          id: 10,
+          questionText: 'What is the primary extinguishing agent used by RFFS, according to the manual?',
+          options: [
+            { id: 1, text: 'Foam mixed with water' },
+            { id: 2, text: 'Water' },
+            { id: 3, text: 'Dry chemical powder' },
+            { id: 4, text: 'Carbon dioxide' },
+          ],
+          correctOptionId: 1,
+        },
+        {
+          id: 11,
+          questionText: 'Which document governs the organization and operation of the RFFS in Nepal?',
+          options: [
+            { id: 1, text: 'ICAO Annex-14, Chapter 9' },
+            { id: 2, text: 'Civil Aviation Authority of Nepal Act' },
+            { id: 3, text: 'The airport’s operations manual' },
+            { id: 4, text: 'The airport manager’s directive' },
+          ],
+          correctOptionId: 1,
+        },
+        {
+          id: 12,
+          questionText: 'Who is responsible for proposing amendments to the RFFS manual?',
+          options: [
+            { id: 1, text: 'The airport manager' },
+            { id: 2, text: 'The fire station chief' },
+            { id: 3, text: 'The Civil Aviation Authority of Nepal, Aviation Fire Division/Department' },
+            { id: 4, text: 'Local government' },
+          ],
+          correctOptionId: 3,
+        },
+        {
+          id: 13,
+          questionText: 'What is the purpose of the RFFS grid map?',
+          options: [
+            { id: 1, text: 'To show passenger check-in locations' },
+            { id: 2, text: 'To outline the layout of airport terminals' },
+            { id: 3, text: 'To indicate topography, access roads, and water supply locations' },
+            { id: 4, text: 'To display weather patterns' },
+          ],
+          correctOptionId: 3,
+        },
+        {
+          id: 14,
+          questionText: 'Who should coordinate with mutual aid agencies during an airport emergency?',
+          options: [
+            { id: 1, text: 'The airport security team' },
+            { id: 2, text: 'The fire station chief' },
+            { id: 3, text: 'The air traffic control tower' },
+            { id: 4, text: 'The airport manager' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 15,
+          questionText: 'How often should the RFFS manual be reviewed and updated?',
+          options: [
+            { id: 1, text: 'Every two years' },
+            { id: 2, text: 'Annually' },
+            { id: 3, text: 'Every six months' },
+            { id: 4, text: 'Whenever there is a change in airport management' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 16,
+          questionText: 'What is the correct response if an RFFS facility becomes temporarily unavailable?',
+          options: [
+            { id: 1, text: 'Close the airport until it is resolved' },
+            { id: 2, text: 'Continue operations without the facility' },
+            { id: 3, text: 'Notify the Civil Aviation Authority of Nepal and reinstate the facility as quickly as possible' },
+            { id: 4, text: 'Ignore the issue and proceed as usual' },
+          ],
+          correctOptionId: 3,
+        },
+        {
+          id: 17,
+          questionText: 'What should be done to maintain the effectiveness of the RFFS during an emergency?',
+          options: [
+            { id: 1, text: 'Minimize resource usage to conserve equipment' },
+            { id: 2, text: 'Ensure all personnel follow the SOPs and use the correct extinguishing agents' },
+            { id: 3, text: 'Allow personnel to improvise based on the situation' },
+            { id: 4, text: 'Rely on mutual aid agencies' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 18,
+          questionText: 'In what situation should the RFFS not be deployed?',
+          options: [
+            { id: 1, text: 'For non-aircraft related building fires' },
+            { id: 2, text: 'During regular maintenance checks' },
+            { id: 3, text: 'For minor runway incidents' },
+            { id: 4, text: 'When there is an aircraft on the ground' },
+          ],
+          correctOptionId: 1,
+        },
+        {
+          id: 19,
+          questionText: 'What must be considered when deploying RFF resources to non-aircraft-related incidents?',
+          options: [
+            { id: 1, text: 'That it doesn’t impact airport operations' },
+            { id: 2, text: 'That it does not prejudice the response objective and minimum discharge rates specified' },
+            { id: 3, text: 'That it doesn’t require additional personnel' },
+            { id: 4, text: 'That it is within budget constraints' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 20,
+          questionText: 'What is a critical consideration for maintaining RFF equipment?',
+          options: [
+            { id: 1, text: 'Ensuring equipment is stored properly and regularly checked' },
+            { id: 2, text: 'Keeping equipment hidden from public view' },
+            { id: 3, text: 'Maintaining equipment only after it fails' },
+            { id: 4, text: 'Using equipment only in emergencies' },
+          ],
+          correctOptionId: 1,
+        },
+        {
+          id: 21,
+          questionText: 'Who is responsible for daily station routines at the fire station?',
+          options: [
+            { id: 1, text: 'The airport manager' },
+            { id: 2, text: 'The air traffic controller' },
+            { id: 3, text: 'The chief of the fire station' },
+            { id: 4, text: 'The airport security team' },
+          ],
+          correctOptionId: 3,
+        },
+        {
+          id: 22,
+          questionText: 'Which document provides the legal foundation for the RFFS in Nepal?',
+          options: [
+            { id: 1, text: 'Civil Aviation Act 1959' },
+            { id: 2, text: 'ICAO Annex-14' },
+            { id: 3, text: 'Airport Emergency Plan (AEP)' },
+            { id: 4, text: 'Airport management guidelines' },
+          ],
+          correctOptionId: 1,
+        },
+        {
+          id: 23,
+          questionText: 'What is the function of the RFFS during an emergency?',
+          options: [
+            { id: 1, text: 'To manage airport parking' },
+            { id: 2, text: 'To ensure the safe evacuation and rescue of passengers and crew' },
+            { id: 3, text: 'To assist with baggage handling' },
+            { id: 4, text: 'To coordinate with air traffic control' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 24,
+          questionText: 'How should RFF personnel handle partially used extinguishing agents?',
+          options: [
+            { id: 1, text: 'Mix them with new agents' },
+            { id: 2, text: 'Store them without sealing' },
+            { id: 3, text: 'Dispose of them immediately' },
+            { id: 4, text: 'Seal and store them properly' },
+          ],
+          correctOptionId: 4,
+        },
+        {
+          id: 25,
+          questionText: 'Who is responsible for ensuring that the RFFS is always ready for immediate deployment?',
+          options: [
+            { id: 1, text: 'The airport manager' },
+            { id: 2, text: 'The fire station chief' },
+            { id: 3, text: 'The local government' },
+            { id: 4, text: 'The air traffic controller' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 26,
+          questionText: 'What is the consequence of not following the RFFS manual during an emergency?',
+          options: [
+            { id: 1, text: 'Increased risk of injury or death' },
+            { id: 2, text: 'More efficient airport operations' },
+            { id: 3, text: 'Improved passenger satisfaction' },
+            { id: 4, text: 'Reduced response times' },
+          ],
+          correctOptionId: 1,
+        },
+        {
+          id: 27,
+          questionText: 'Which of the following should be included in RFFS equipment checks?',
+          options: [
+            { id: 1, text: 'Fuel levels in vehicles' },
+            { id: 2, text: 'Passenger manifests' },
+            { id: 3, text: 'Weather patterns' },
+            { id: 4, text: 'Ticket sales data' },
+          ],
+          correctOptionId: 1,
+        },
+        {
+          id: 28,
+          questionText: 'What should be the first step taken by RFF personnel in the event of an aircraft accident?',
+          options: [
+            { id: 1, text: 'Notify the media' },
+            { id: 2, text: 'Deploy the RFFS rapidly and effectively' },
+            { id: 3, text: 'Alert the passengers' },
+            { id: 4, text: 'Activate airport security' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 29,
+          questionText: 'Who has the authority to approve amendments to the RFFS manual?',
+          options: [
+            { id: 1, text: 'The airport manager' },
+            { id: 2, text: 'The Director General of the Civil Aviation Authority of Nepal' },
+            { id: 3, text: 'The fire station chief' },
+            { id: 4, text: 'The local government' },
+          ],
+          correctOptionId: 2,
+        },
+        {
+          id: 30,
+          questionText: 'What should be done if a provision in the RFFS manual contradicts the AEP?',
+          options: [
+            { id: 1, text: 'The AEP shall prevail' },
+            { id: 2, text: 'The RFFS manual shall prevail' },
+            { id: 3, text: 'The airport manager decides' },
+            { id: 4, text: 'The local government intervenes' },
+          ],
+          correctOptionId: 1,
+        }
+      ]
+    }
     
 ];
 export default quizzes;
