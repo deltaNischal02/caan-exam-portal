@@ -49,7 +49,7 @@ const OptionButton = styled.button`
   padding: 1rem;
   font-size: 1rem;
   background-color: ${({ darkMode }) => (darkMode ? '#555555' : '#5A7684')};
-  color: ${({ darkMode }) => (darkMode ? 'white' : '#333333')};
+  color: ${({ darkMode }) => (darkMode ? 'white' : 'white')};
   border: 2px solid transparent;
   border-radius: 8px;
   cursor: pointer;
@@ -58,6 +58,8 @@ const OptionButton = styled.button`
   &:hover {
     background-color: ${({ darkMode }) => (darkMode ? '#777777' : '#E9E6FF')};
     border-color: #007bff;
+    transform: scale(1.05); // Slight zoom effect on hover
+    color: black;
   }
 
   &:disabled {
@@ -126,7 +128,7 @@ const DarkModeToggle = styled.button`
 const QuizPage = () => {
   const location = useLocation();
   const { state } = location; // Get quiz configuration from TopicsSelectionPage
-  const { difficulty, numberOfQuestions, quizDuration } = state || {}; // User configuration
+  const { difficulty, numberOfQuestions, quizDuration, isMixed } = state || {}; // Add isMixed flag
 
   const { quizId } = useParams();
   const quiz = quizzes.find((quiz) => quiz.id === quizId); // Find the quiz by ID from quizdata.js
@@ -137,8 +139,11 @@ const QuizPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); // Track the current question index
   const [selectedOption, setSelectedOption] = useState(null); // Track the selected option for a question
   const [isCorrect, setIsCorrect] = useState(null); // Check if the selected answer is correct
-  const [score, setScore] = useState(0); // Track the user's score
+  const [score, setScore] = useState(1); // Track the user's score
   const [timeLeft, setTimeLeft] = useState(60); // Timer for each question
+  const [currentDifficulty, setCurrentDifficulty] = useState(difficulty); // Track the current difficulty level
+  const [correctCount, setCorrectCount] = useState(0); // Track how many correct answers in a row
+  const [wrongCount, setWrongCount] = useState(0); // Track wrong answers in a row
 
   const { progress, updateProgress } = useUserProgress(); // User progress tracking
   const [loading, setLoading] = useState(true); // Loading state to simulate data fetching
@@ -147,9 +152,14 @@ const QuizPage = () => {
   useEffect(() => {
     if (quiz) {
       // Filter questions by difficulty
-      const filteredQuestions = quiz.questions.filter(
-        (question) => question.difficulty === difficulty
+      let filteredQuestions = quiz.questions.filter(
+        (question) => question.difficulty === currentDifficulty
       );
+
+      if (isMixed) {
+        // Adjust the difficulty scaling
+        filteredQuestions = quiz.questions; // Use all difficulties when Mixed
+      }
 
       // Check if user-selected number of questions is more than available
       if (filteredQuestions.length < numberOfQuestions) {
@@ -157,14 +167,16 @@ const QuizPage = () => {
       }
 
       // Shuffle and limit questions based on user selection or availability
-      const shuffledQuestions = shuffleArray(filteredQuestions).slice(0, Math.min(numberOfQuestions, filteredQuestions.length)).map((question) => ({
-        ...question,
-        options: shuffleArray([...question.options]),
-      }));
+      const shuffledQuestions = shuffleArray(filteredQuestions)
+        .slice(0, Math.min(numberOfQuestions, filteredQuestions.length))
+        .map((question) => ({
+          ...question,
+          options: shuffleArray([...question.options]),
+        }));
 
       setShuffledQuiz({ ...quiz, questions: shuffledQuestions });
     }
-  }, [quiz, difficulty, numberOfQuestions]);
+  }, [quiz, currentDifficulty, numberOfQuestions]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -196,7 +208,29 @@ const QuizPage = () => {
 
   const handleOptionClick = (optionId) => {
     setSelectedOption(optionId);
-    setIsCorrect(optionId === shuffledQuiz.questions[currentQuestionIndex].correctOptionId);
+    const correctOption = shuffledQuiz.questions[currentQuestionIndex].correctOptionId;
+    setIsCorrect(optionId === correctOption);
+
+    if (optionId === correctOption) {
+      setCorrectCount(correctCount + 1); // Increase correct count
+      setWrongCount(0); // Reset wrong count
+    } else {
+      setWrongCount(wrongCount + 1); // Increase wrong count
+      setCorrectCount(0); // Reset correct count
+    }
+
+    // Adjust difficulty for "Mixed"
+    if (isMixed) {
+      if (correctCount >= 2 && currentDifficulty === 'Easy') {
+        setCurrentDifficulty('Medium');
+      } else if (correctCount >= 2 && currentDifficulty === 'Medium') {
+        setCurrentDifficulty('Hard');
+      } else if (wrongCount >= 2 && currentDifficulty === 'Hard') {
+        setCurrentDifficulty('Medium');
+      } else if (wrongCount >= 2 && currentDifficulty === 'Medium') {
+        setCurrentDifficulty('Easy');
+      }
+    }
   };
 
   const nextQuestion = () => {
@@ -215,9 +249,23 @@ const QuizPage = () => {
   };
 
   const finishQuiz = () => {
-    // Redirect to result page with user score and answers
-    navigate(`/quiz/${quizId}/result`, { state: { score, totalQuestions: shuffledQuiz.questions.length } });
+    // Collect user answers for the current quiz
+    const userAnswers = shuffledQuiz.questions.map((question, index) => {
+      return selectedOption === question.correctOptionId ? question.correctOptionId : null;
+    });
+  
+    // Navigate to the result page and pass necessary data
+    navigate(`/quiz/${quizId}/result`, {
+      state: {
+        score, // Ensure this is a number
+        totalQuestions: shuffledQuiz.questions.length, 
+        shuffledQuiz: shuffledQuiz.questions,  // Pass only the questions that were shown
+        userAnswers,  // Pass the user's answers
+        difficulty: currentDifficulty, // Pass difficulty if needed
+      }
+    });
   };
+  
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode); // Toggle dark mode
