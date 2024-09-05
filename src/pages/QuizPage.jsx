@@ -39,7 +39,7 @@ const OptionButton = styled.button`
   padding: 1rem;
   font-size: 1rem;
   background-color: ${({ darkMode }) => (darkMode ? '#555555' : '#5A7684')};
-  color: ${({ darkMode }) => (darkMode ? '#ffffff' : '#333333')};
+  color: ${({ darkMode }) => (darkMode ? 'white' : '#333333')};
   border: 2px solid transparent;
   border-radius: 8px;
   cursor: pointer;
@@ -116,11 +116,10 @@ const DarkModeToggle = styled.button`
 const QuizPage = () => {
   const location = useLocation();
   const { state } = location;
-  const { difficulty, numberOfQuestions, quizDuration } = state || {};
+  const { difficulty, numberOfQuestions, quizDuration } = state || {}; // Get configuration from the previous page
 
   const { quizId } = useParams();
   const quiz = quizzes.find((quiz) => quiz.id === quizId);
-  
   const navigate = useNavigate();
 
   const [shuffledQuiz, setShuffledQuiz] = useState(null);
@@ -136,13 +135,20 @@ const QuizPage = () => {
 
   useEffect(() => {
     if (quiz) {
-      const shuffledQuestions = shuffleArray(quiz.questions).map((question) => ({
+      // Filter the questions based on selected difficulty
+      const filteredQuestions = quiz.questions.filter(
+        (question) => question.difficulty === difficulty
+      );
+
+      // Shuffle and limit the number of questions to the selected amount
+      const shuffledQuestions = shuffleArray(filteredQuestions).slice(0, numberOfQuestions).map((question) => ({
         ...question,
         options: shuffleArray([...question.options]),
       }));
+
       setShuffledQuiz({ ...quiz, questions: shuffledQuestions });
     }
-  }, [quiz]);
+  }, [quiz, difficulty, numberOfQuestions]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -215,11 +221,10 @@ const QuizPage = () => {
       </DarkModeToggle>
       <Timer darkMode={darkMode}>Time left: {timeLeft} seconds</Timer>
       <ProgressBar progress={progressPercentage} />
-      
 
-      <QuestionText darkMode={darkMode}>{quiz.questions[currentQuestionIndex].questionText}</QuestionText>
+      <QuestionText darkMode={darkMode}>{shuffledQuiz.questions[currentQuestionIndex].questionText}</QuestionText>
       <OptionsList>
-        {quiz.questions[currentQuestionIndex].options.map(option => (
+        {shuffledQuiz.questions[currentQuestionIndex].options.map(option => (
           <OptionButton
             key={option.id}
             onClick={() => handleOptionClick(option.id)}
