@@ -7,30 +7,41 @@ import ProgressBar from "../components/ProgressBar";
 
 const TopicsSelectionPageWrapper = styled.div`
   padding: 2rem;
-  display: flex;
-  flex-direction: row;
   gap: 2rem;
+  position: relative;
 `;
 
-const ConfigSection = styled.div`
-  flex: 1;
-  background-color: #f9f9f9;
+const DetailSection = styled.div`
+  background-color: aliceblue;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: sticky;
+  position: absolute;
   top: 0;
-  align-self: flex-start;
+  left: 0rem;
   height: 100vh;
-  overflow-y: auto;
+  width: 22%;
+  // overflow-x: auto;
+  // border: 1px solid purple;
 `;
 
 const MainContent = styled.div`
-  flex: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
+  // border: 2px solid red;
+  position: absolute;
+  top: 0;
+  right: 2rem;
+  left: calc(25%);
+  width: 70%;
+  height:100vh;
+  padding: 2rem;
+  flex: 3;
+  
 `;
+
+
 
 const SearchBar = styled.input`
   padding: 0.5rem;
@@ -73,9 +84,9 @@ const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; /* Space between the cards */
-  margin-top: -5rem;
-  padding: 10rem;
-  border: 3px solid black; //remove when required
+  // margin-top: -5rem;
+  // padding: 10rem;
+  // border: 3px solid black; //remove when required
   // height:50rem;
   // width:50rem;
 `;
@@ -100,25 +111,36 @@ const PaginationButton = styled.button`
   }
 `;
 
+const ConfigSection = styled.div`
+  
+  border-bottom:1px solid purple;
+  
+`;
+
 const SelectWrapper = styled.div`
-  margin-top: 2rem;
+  // margin-top: 2rem;
+  
+`;
+const ProgressBarWrapper = styled.div`
+  border-bottom: 1px solid purple;
 `;
 
 const Select = styled.select`
-  padding: 0.5rem;
+  padding: 0.2rem;
   margin-right: 1rem;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid purple;
+  font-size: small;
 `;
 
 const StartButton = styled.button`
-  margin: 1rem;
+  margin: 1rem 0rem 1rem 3rem;
   color: purple;
     text-transform: uppercase;
     text-decoration: none;
     border: 2px solid purple;
-    padding: 8px 20px;
-    font-size: 17px;
+    padding: 5px 10px;
+    font-size: 15px;
     font-weight: bold;
     background: transparent;
     position: relative;
@@ -145,53 +167,15 @@ const TopicsSelectionPage = () => {
   // Sample Data
   const topics = {
     "general-knowledge": [
-      {
-        id: "history",
-        title: "History",
-        description: "Test your knowledge of historical events.",
-        icon: "📜",
-        category: "History",
-        imageurl: "history.jpg",
-        resources: [{ name: "Resource 1", link: "#", type: "PDF" }],
-      },
-      {
-        id: "geography",
-        title: "Geography",
-        description: "Explore the world with geography quizzes.",
-        icon: "🌍",
-        category: "Geography",
-        imageurl: "geography.jpg",
-        resources: [{ name: "Resource 2", link: "#", type: "Video" }],
-      },
-      {
-        id: "history",
-        title: "History",
-        description: "Test your knowledge of historical events.",
-        icon: "📜",
-        category: "History",
-        imageurl: "history.jpg",
-        resources: [{ name: "Resource 1", link: "#", type: "PDF" }],
-      },
-      {
-        id: "geography",
-        title: "Geography",
-        description: "Explore the world with geography quizzes.",
-        icon: "🌍",
-        category: "Geography",
-        imageurl: "geography.jpg",
-        resources: [{ name: "Resource 2", link: "#", type: "Video" }],
-      },
-      {
-        id: "history",
-        title: "History",
-        description: "Test your knowledge of historical events.",
-        icon: "📜",
-        category: "History",
-        imageurl: "history.jpg",
-        resources: [{ name: "Resource 1", link: "#", type: "PDF" }],
-      },
+      { id: "history", title: "History", category: "History",description: "Test your knowledge of historical events.",icon: "📜" },
+      { id: "geography", title: "Geography", category: "Geography",description: "Test your knowledge of historical events.",icon: "📜" },
+    ],
+    "training-courses": [
+      { id: "chapter-one", title: "ARFFS Chapter 1-ARFFS", category: "ARFFS",description: "Test your knowledge of historical events." ,icon: "📜",},
+      { id: "chapter-two", title: "ARFFS Chapter 2-DEFINATION", category: "DEFINATION",description: "Test your knowledge of historical events.",icon: "📜", },
     ],
   };
+    
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -202,6 +186,20 @@ const TopicsSelectionPage = () => {
   const [difficulty, setDifficulty] = useState("Easy");
   const [numberOfQuestions, setNumberOfQuestions] = useState(10);
   const [quizDuration, setQuizDuration] = useState(30);
+  const [categories, setCategories] = useState([]);
+
+// dyanamically extract categoreis
+  useEffect(() => {
+    if (topics[quizId]) {
+      // Dynamically extract categories from the topics data for the current quiz
+      const uniqueCategories = [
+        "All",
+        ...new Set(topics[quizId].map((topic) => topic.category)),
+      ];
+      setCategories(uniqueCategories);
+    }
+  }, [quizId]);
+
 
   const filteredTopics = topics[quizId]?.filter(
     (topic) =>
@@ -236,12 +234,20 @@ const TopicsSelectionPage = () => {
       });
     }
   };
+  
 
   return (
     <TopicsSelectionPageWrapper>
-      <ConfigSection>
+        <DetailSection>
+      
+        <ProgressBarWrapper>
+          
+
         <h2>Progress Bar</h2>
         <ProgressBar />
+        
+        </ProgressBarWrapper>
+        <ConfigSection>
         <h2>Configure Your Quiz</h2>
         {selectedTopic && (
           <div>
@@ -285,7 +291,8 @@ const TopicsSelectionPage = () => {
             <StartButton onClick={handleStartQuiz}>Start Quiz</StartButton>
           </div>
         )}
-      </ConfigSection>
+        </ConfigSection>
+      </DetailSection>
       <MainContent>
         <h1>SELECT TOPIC FOR {quizId.replace("-", " ").toUpperCase()}</h1>
 
@@ -297,18 +304,17 @@ const TopicsSelectionPage = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
         />
 
-        {/* Filters and Sorting */}
-        <FilterSortWrapper>
+         {/* Dynamic Filters and Sorting */}
+         <FilterSortWrapper>
           <div>
-            <FilterButton onClick={() => setSelectedCategory("All")}>
-              All
-            </FilterButton>
-            <FilterButton onClick={() => setSelectedCategory("History")}>
-              History
-            </FilterButton>
-            <FilterButton onClick={() => setSelectedCategory("Geography")}>
-              Geography
-            </FilterButton>
+            {categories.map((category) => (
+              <FilterButton
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </FilterButton>
+            ))}
           </div>
           <SortSelect
             value={sortOption}
