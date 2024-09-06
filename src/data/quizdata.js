@@ -1,45 +1,46 @@
 const quizzes = [
-    {
-      id: 'general-knowledge',  // Change ID to match the URL parameter
-      title: 'General Knowledge Quiz',
-      difficulty: 'Easy',
-      questions: [
-        {
-          id: 1,
-          questionText: 'What is the capital of France?',
-          options: [
-            { id: 1, text: 'Paris' },
-            { id: 2, text: 'London' },
-            { id: 3, text: 'Rome' },
-            { id: 4, text: 'Berlin' },
-          ],
-          correctOptionId: 1,
-        },
-        {
-          id: 2,
-          questionText: 'Which planet is known as the Red Planet?',
-          options: [
-            { id: 1, text: 'Earth' },
-            { id: 2, text: 'Mars' },
-            { id: 3, text: 'Jupiter' },
-            { id: 4, text: 'Saturn' },
-          ],
-          correctOptionId: 2,
-        },
-        {
-            id: 3,
-            questionText: 'What is my name?',
-            options: [
-              { id: 1, text: 'nischal  ' },
-              { id: 2, text: 'nis' },
-              { id: 3, text: 'nanna' },
-              { id: 4, text: 'lalla' },
-            ],
-            correctOptionId: 1,
-          }
-        // Add more questions as needed
-      ],
-    },
+  {
+    id: 'general-knowledge',  // Change ID to match the URL parameter
+    title: 'General Knowledge Quiz',
+    questions: [
+      {
+        id: 1,
+        questionText: 'What is the capital of France?',
+        difficulty: 'Easy',
+        options: [
+          { id: 1, text: 'Paris' },
+          { id: 2, text: 'London' },
+          { id: 3, text: 'Rome' },
+          { id: 4, text: 'Berlin' },
+        ],
+        correctOptionId: 1,
+      },
+      {
+        id: 2,
+        questionText: 'Which planet is known as the Red Planet?',
+        difficulty: 'Medium',
+        options: [
+          { id: 1, text: 'Earth' },
+          { id: 2, text: 'Mars' },
+          { id: 3, text: 'Jupiter' },
+          { id: 4, text: 'Saturn' },
+        ],
+        correctOptionId: 2,
+      },
+      {
+        id: 3,
+        questionText: 'What is my name?',
+        difficulty: 'Hard',
+        options: [
+          { id: 1, text: 'nischal' },
+          { id: 2, text: 'nis' },
+          { id: 3, text: 'nanna' },
+          { id: 4, text: 'lalla' },
+        ],
+        correctOptionId: 1,
+      },
+    ],
+  },
     {
       id: 'general-knowledge',  // Change ID to match the URL parameter
       title: 'General Knowledge Quiz',
@@ -81,7 +82,7 @@ const quizzes = [
         // Add more questions as needed
       ],
     },
-    // Add more quizzes as needed
+    // caan-rules quiz
     {
       id: 'caan-rules',
       title: 'CAAN Rules and Regulations',
@@ -105,11 +106,12 @@ const quizzes = [
     {
       id: 'training-courses',
       title: 'Training Courses',
-      difficulty:'Easy',
+      
       questions: [
         {
           id: 1,
           questionText: 'What is the principal objective of Rescue and Fire Fighting Services (RFFS)?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'To maintain airport security' },
             { id: 2, text: 'To save lives in the event of an aircraft accident or incident' },
@@ -121,6 +123,7 @@ const quizzes = [
         {
           id: 2,
           questionText: 'How long should RFFS be provided after the last aircraft departs?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: '10 minutes' },
             { id: 2, text: '15 minutes' },
@@ -132,6 +135,7 @@ const quizzes = [
         {
           id: 3,
           questionText: 'What should the level of RFFS be commensurate with?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'The size of the airport' },
             { id: 2, text: 'The number of passengers' },
@@ -143,6 +147,7 @@ const quizzes = [
         {
           id: 4,
           questionText: 'Which organization’s standards does the RFFS in Nepal adhere to?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'United Nations' },
             { id: 2, text: 'European Union Aviation Safety Agency (EASA)' },
@@ -154,6 +159,7 @@ const quizzes = [
         {
           id: 5,
           questionText: 'Which of the following is excluded from the RFFS requirements?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Aircraft fires' },
             { id: 2, text: 'Runway incidents' },
@@ -165,6 +171,7 @@ const quizzes = [
         {
           id: 6,
           questionText: 'Who is responsible for organizing, equipping, staffing, and training the RFFS?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'The airport manager' },
             { id: 2, text: 'The fire department' },
@@ -176,6 +183,7 @@ const quizzes = [
         {
           id: 7,
           questionText: 'What should be described in the Aerodrome Manual?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Flight schedules' },
             { id: 2, text: 'Passenger handling procedures' },
@@ -187,6 +195,7 @@ const quizzes = [
         {
           id: 8,
           questionText: 'Where should information about the scale/level of protection provided by airports be made available?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'On the airport\'s website' },
             { id: 2, text: 'In the Aeronautical Information Publication (AIP) of Nepal' },
@@ -198,6 +207,7 @@ const quizzes = [
         {
           id: 9,
           questionText: 'What is the role of the chief of the fire station in daily operations?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'To handle airport finances' },
             { id: 2, text: 'To prepare and implement daily station routines and Standard Operating Procedures (SOP)' },
@@ -209,6 +219,7 @@ const quizzes = [
         {
           id: 10,
           questionText: 'What must all RFF personnel assume at all times?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'That the airport is secure' },
             { id: 2, text: 'That all flights are on time' },
@@ -220,6 +231,7 @@ const quizzes = [
         {
           id: 11,
           questionText: 'What is the principal extinguishing agent used by the RFFS?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Water' },
             { id: 2, text: 'Sand' },
@@ -231,6 +243,7 @@ const quizzes = [
         {
           id: 12,
           questionText: 'What is the first step in the event of an aircraft accident or incident?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Notify the media' },
             { id: 2, text: 'Activate the airport security' },
@@ -242,6 +255,7 @@ const quizzes = [
         {
           id: 13,
           questionText: 'Who approves amendments to the RFFS manual?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'The airport manager' },
             { id: 2, text: 'The Director General of the Civil Aviation Authority of Nepal' },
@@ -253,6 +267,7 @@ const quizzes = [
         {
           id: 14,
           questionText: 'What should be done if any provisions of the RFFS manual contradict the Airport Emergency Plan (AEP)?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'The provisions of the RFFS manual shall prevail' },
             { id: 2, text: 'The provisions of the AEP shall prevail' },
@@ -264,6 +279,7 @@ const quizzes = [
         {
           id: 15,
           questionText: 'What should be included in the grid map provided by the RFFS?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Flight schedules' },
             { id: 2, text: 'Restaurant locations' },
@@ -275,6 +291,7 @@ const quizzes = [
         {
           id: 16,
           questionText: 'Who is responsible for ensuring the RFFS is organized, equipped, staffed, and trained?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'The airport manager' },
             { id: 2, text: 'Local government' },
@@ -286,6 +303,7 @@ const quizzes = [
         {
           id: 17,
           questionText: 'What is the minimum response time the RFFS should aim to achieve?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: '1 minute' },
             { id: 2, text: '2 minutes' },
@@ -297,6 +315,7 @@ const quizzes = [
         {
           id: 18,
           questionText: 'How often should the RFFS manual be reviewed?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Monthly' },
             { id: 2, text: 'Every two years' },
@@ -308,6 +327,7 @@ const quizzes = [
         {
           id: 19,
           questionText: 'Who is responsible for preparing and implementing daily station routines and SOPs at the fire station?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'The airport manager' },
             { id: 2, text: 'The air traffic controller' },
@@ -319,6 +339,7 @@ const quizzes = [
         {
           id: 20,
           questionText: 'What is the responsibility of the Airport Civil Aviation Office regarding RFFS?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'To provide in-flight services' },
             { id: 2, text: 'To ensure the RFFS is organized, equipped, trained, and operated' },
@@ -330,6 +351,7 @@ const quizzes = [
         {
           id: 21,
           questionText: 'What should the RFFS personnel consider at all times according to the manual?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Weather conditions' },
             { id: 2, text: 'Passenger comfort' },
@@ -341,6 +363,7 @@ const quizzes = [
         {
           id: 22,
           questionText: 'What kind of map should the RFFS have for the airport?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'A tourist map' },
             { id: 2, text: 'A weather map' },
@@ -352,6 +375,7 @@ const quizzes = [
         {
           id: 23,
           questionText: 'What kind of emergencies is the RFFS primarily concerned with?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Medical emergencies' },
             { id: 2, text: 'Power outages' },
@@ -363,6 +387,7 @@ const quizzes = [
         {
           id: 24,
           questionText: 'Which of the following is a key responsibility of the RFFS?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Checking passports' },
             { id: 2, text: 'Handling baggage' },
@@ -374,6 +399,7 @@ const quizzes = [
         {
           id: 25,
           questionText: 'What does RFFS stand for?',
+          difficulty: 'Easy',
           options: [
             { id: 1, text: 'Regional Flight Frequency System' },
             { id: 2, text: 'Rescue and Fire Fighting Service' },
@@ -385,6 +411,8 @@ const quizzes = [
         {
           id: 26,
           questionText: 'What should the response time of the RFFS be under optimal conditions?',
+          difficulty: 'Easy',
+        
           options: [
             { id: 1, text: '10 minutes' },
             { id: 2, text: '5 minutes' },
@@ -396,6 +424,8 @@ const quizzes = [
         {
           id: 27,
           questionText: 'Who needs to coordinate with mutual aid agencies during an emergency?',
+          difficulty: 'Easy',
+
           options: [
             { id: 1, text: 'The airport’s customer service' },
             { id: 2, text: 'The fire chief' },
@@ -407,7 +437,10 @@ const quizzes = [
         {
           id: 28,
           questionText: 'What is a key component of the RFFS’s equipment?',
+          difficulty: 'Easy',
+
           options: [
+
             { id: 1, text: 'Gardening tools' },
             { id: 2, text: 'Passenger seating charts' },
             { id: 3, text: 'Fire extinguishing agents' },
@@ -418,6 +451,8 @@ const quizzes = [
         {
           id: 29,
           questionText: 'What is the legal enforcement behind the RFFS manual?',
+          difficulty: 'Easy',
+
           options: [
             { id: 1, text: 'Local government policies' },
             { id: 2, text: 'Airport management guidelines' },
@@ -428,6 +463,7 @@ const quizzes = [
         },
         {
           id: 30,
+          difficulty: 'Easy',
           questionText: 'What kind of clothing should RFF personnel wear during operations?',
           options: [
             { id: 1, text: 'Casual wear' },
@@ -437,17 +473,12 @@ const quizzes = [
           ],
           correctOptionId: 3,
         },
-        
-      ],
-    },
-    {
-      id: 'chapter-one-rffs',
-      title: 'Airport Rescue and Fire Fighting Services',
-      difficulty:'Medium',
-      questions: [
+        // medium level
         {
           id: 1,
           questionText: 'According to the RFFS manual, what factors should be reviewed annually to ensure effectiveness?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'Weather conditions and flight schedules' },
             { id: 2, text: 'Passenger satisfaction and ticket sales' },
@@ -459,6 +490,8 @@ const quizzes = [
         {
           id: 2,
           questionText: 'Which document prevails in case of conflict between the RFFS manual and the Airport Emergency Plan (AEP)?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'The RFFS manual' },
             { id: 2, text: 'The local government directive' },
@@ -470,6 +503,8 @@ const quizzes = [
         {
           id: 3,
           questionText: 'What is the role of the fire station chief in the implementation of the RFFS manual?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'To manage airport security' },
             { id: 2, text: 'To ensure daily routines and SOPs are followed' },
@@ -481,6 +516,8 @@ const quizzes = [
         {
           id: 4,
           questionText: 'What kind of map is essential for the RFFS to have for effective emergency response?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'A passenger seating chart' },
             { id: 2, text: 'A topographical map' },
@@ -492,6 +529,8 @@ const quizzes = [
         {
           id: 5,
           questionText: 'How should the response time for RFFS be evaluated?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'By comparing with other airports' },
             { id: 2, text: 'According to ICAO standards' },
@@ -503,6 +542,8 @@ const quizzes = [
         {
           id: 6,
           questionText: 'What should be the primary concern for RFFS during an aircraft fire?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'Maintaining airport cleanliness' },
             { id: 2, text: 'Ensuring the safety and survival of passengers and crew' },
@@ -514,6 +555,8 @@ const quizzes = [
         {
           id: 7,
           questionText: 'Which international standards are used by the RFFS to assess its effectiveness?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'EASA regulations' },
             { id: 2, text: 'ISO standards' },
@@ -525,6 +568,8 @@ const quizzes = [
         {
           id: 8,
           questionText: 'In what circumstances should the RFFS manual be amended?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'After significant incidents or when new regulations are introduced' },
             { id: 2, text: 'Every five years, regardless of changes' },
@@ -536,6 +581,8 @@ const quizzes = [
         {
           id: 9,
           questionText: 'What should be included in the RFFS’s annual review?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'Passenger feedback and satisfaction' },
             { id: 2, text: 'Weather data and historical records' },
@@ -547,6 +594,8 @@ const quizzes = [
         {
           id: 10,
           questionText: 'What is the primary extinguishing agent used by RFFS, according to the manual?',
+      difficulty:'Medium',
+
           options: [
             { id: 1, text: 'Foam mixed with water' },
             { id: 2, text: 'Water' },
@@ -557,6 +606,7 @@ const quizzes = [
         },
         {
           id: 11,
+      difficulty:'Medium',
           questionText: 'Which document governs the organization and operation of the RFFS in Nepal?',
           options: [
             { id: 1, text: 'ICAO Annex-14, Chapter 9' },
@@ -568,6 +618,7 @@ const quizzes = [
         },
         {
           id: 12,
+      difficulty:'Medium',
           questionText: 'Who is responsible for proposing amendments to the RFFS manual?',
           options: [
             { id: 1, text: 'The airport manager' },
@@ -579,6 +630,7 @@ const quizzes = [
         },
         {
           id: 13,
+      difficulty:'Medium',
           questionText: 'What is the purpose of the RFFS grid map?',
           options: [
             { id: 1, text: 'To show passenger check-in locations' },
@@ -590,6 +642,7 @@ const quizzes = [
         },
         {
           id: 14,
+      difficulty:'Medium',
           questionText: 'Who should coordinate with mutual aid agencies during an airport emergency?',
           options: [
             { id: 1, text: 'The airport security team' },
@@ -601,6 +654,7 @@ const quizzes = [
         },
         {
           id: 15,
+      difficulty:'Medium',
           questionText: 'How often should the RFFS manual be reviewed and updated?',
           options: [
             { id: 1, text: 'Every two years' },
@@ -612,6 +666,7 @@ const quizzes = [
         },
         {
           id: 16,
+      difficulty:'Medium',
           questionText: 'What is the correct response if an RFFS facility becomes temporarily unavailable?',
           options: [
             { id: 1, text: 'Close the airport until it is resolved' },
@@ -623,6 +678,7 @@ const quizzes = [
         },
         {
           id: 17,
+      difficulty:'Medium',
           questionText: 'What should be done to maintain the effectiveness of the RFFS during an emergency?',
           options: [
             { id: 1, text: 'Minimize resource usage to conserve equipment' },
@@ -634,6 +690,7 @@ const quizzes = [
         },
         {
           id: 18,
+      difficulty:'Medium',
           questionText: 'In what situation should the RFFS not be deployed?',
           options: [
             { id: 1, text: 'For non-aircraft related building fires' },
@@ -645,6 +702,7 @@ const quizzes = [
         },
         {
           id: 19,
+      difficulty:'Medium',
           questionText: 'What must be considered when deploying RFF resources to non-aircraft-related incidents?',
           options: [
             { id: 1, text: 'That it doesn’t impact airport operations' },
@@ -656,6 +714,7 @@ const quizzes = [
         },
         {
           id: 20,
+      difficulty:'Medium',
           questionText: 'What is a critical consideration for maintaining RFF equipment?',
           options: [
             { id: 1, text: 'Ensuring equipment is stored properly and regularly checked' },
@@ -667,6 +726,7 @@ const quizzes = [
         },
         {
           id: 21,
+      difficulty:'Medium',
           questionText: 'Who is responsible for daily station routines at the fire station?',
           options: [
             { id: 1, text: 'The airport manager' },
@@ -678,6 +738,7 @@ const quizzes = [
         },
         {
           id: 22,
+      difficulty:'Medium',
           questionText: 'Which document provides the legal foundation for the RFFS in Nepal?',
           options: [
             { id: 1, text: 'Civil Aviation Act 1959' },
@@ -689,6 +750,7 @@ const quizzes = [
         },
         {
           id: 23,
+      difficulty:'Medium',
           questionText: 'What is the function of the RFFS during an emergency?',
           options: [
             { id: 1, text: 'To manage airport parking' },
@@ -700,6 +762,7 @@ const quizzes = [
         },
         {
           id: 24,
+      difficulty:'Medium',
           questionText: 'How should RFF personnel handle partially used extinguishing agents?',
           options: [
             { id: 1, text: 'Mix them with new agents' },
@@ -711,6 +774,7 @@ const quizzes = [
         },
         {
           id: 25,
+      difficulty:'Medium',
           questionText: 'Who is responsible for ensuring that the RFFS is always ready for immediate deployment?',
           options: [
             { id: 1, text: 'The airport manager' },
@@ -722,6 +786,7 @@ const quizzes = [
         },
         {
           id: 26,
+      difficulty:'Medium',
           questionText: 'What is the consequence of not following the RFFS manual during an emergency?',
           options: [
             { id: 1, text: 'Increased risk of injury or death' },
@@ -733,6 +798,7 @@ const quizzes = [
         },
         {
           id: 27,
+      difficulty:'Medium',
           questionText: 'Which of the following should be included in RFFS equipment checks?',
           options: [
             { id: 1, text: 'Fuel levels in vehicles' },
@@ -744,6 +810,7 @@ const quizzes = [
         },
         {
           id: 28,
+      difficulty:'Medium',
           questionText: 'What should be the first step taken by RFF personnel in the event of an aircraft accident?',
           options: [
             { id: 1, text: 'Notify the media' },
@@ -755,6 +822,7 @@ const quizzes = [
         },
         {
           id: 29,
+      difficulty:'Medium',
           questionText: 'Who has the authority to approve amendments to the RFFS manual?',
           options: [
             { id: 1, text: 'The airport manager' },
@@ -766,6 +834,7 @@ const quizzes = [
         },
         {
           id: 30,
+      difficulty:'Medium',
           questionText: 'What should be done if a provision in the RFFS manual contradicts the AEP?',
           options: [
             { id: 1, text: 'The AEP shall prevail' },
@@ -774,9 +843,404 @@ const quizzes = [
             { id: 4, text: 'The local government intervenes' },
           ],
           correctOptionId: 1,
+        },
+        {
+          id: 31,
+      difficulty:'Medium',
+          questionText: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx?',
+          options: [
+            { id: 1, text: 'test test testt test teset tse tsettst' },
+            { id: 2, text: 'The test test testt test teset tse tsettst' },
+            { id: 3, text: 'test test testt test teset tse tsettst' },
+            { id: 4, text: 'test test testt test teset tse tsettst' },
+          ],
+          correctOptionId: 1,
+        },
+        // Hard level
+        {
+          id: 1,
+          questionText: 'What are some potential sources of ignition during an aircraft crash that the RFFS must consider?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'Contact with hot metal parts and electrostatic discharge' },
+            { id: 2, text: 'Passenger cell phones' },
+            { id: 3, text: 'Wind direction and speed' },
+            { id: 4, text: 'Temperature of the runway' },
+          ],
+          correctOptionId: 1,
+          explanation: "Hot metal parts and electrostatic discharge are primary sources of ignition during an aircraft crash.",
+          hint: "Think about the heat generated during a crash."
+        },
+        {
+          id: 2,
+          questionText: 'Which legal documents enforce the provisions of the RFFS manual in Nepal?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'Civil Aviation Act 1959 and Civil Aviation Authority of Nepal Act 1996' },
+            { id: 2, text: 'Nepal Fire Services Act' },
+            { id: 3, text: 'National Airport Safety Regulations' },
+            { id: 4, text: 'ICAO Emergency Guidelines' },
+          ],
+          correctOptionId: 1,
+          explanation: "The Civil Aviation Act 1959 and the Civil Aviation Authority of Nepal Act 1996 are the key legal documents.",
+          hint: "These are laws that govern civil aviation in Nepal."
+        },
+        {
+          id: 3,
+          questionText: 'What is the significance of ICAO Annex-14, Chapter 9, for the RFFS?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'It outlines global airport security protocols' },
+            { id: 2, text: 'It sets the minimum standards for rescue and fire fighting services' },
+            { id: 3, text: 'It mandates passenger safety measures' },
+            { id: 4, text: 'It provides guidelines for air traffic control' },
+          ],
+          correctOptionId: 2,
+          explanation: "ICAO Annex-14, Chapter 9 sets minimum standards for RFFS to ensure effective response.",
+          hint: "It's about fire and rescue services, not air traffic control."
+        },
+        {
+          id: 4,
+          questionText: 'How should RFF personnel respond to a fuel spill during an aircraft incident?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'By containing the spill with absorbent materials and preventing ignition' },
+            { id: 2, text: 'By igniting the spill to burn it off quickly' },
+            { id: 3, text: 'By allowing the fuel to evaporate naturally' },
+            { id: 4, text: 'By using water to wash away the fuel' },
+          ],
+          correctOptionId: 1,
+          explanation: "The correct response is to contain the spill and prevent any possible ignition.",
+          hint: "Think of safety and containment rather than risky approaches."
+        },
+        {
+          id: 5,
+          questionText: 'What are the critical components that must be included in the RFFS grid map?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'Passenger seating arrangements and flight schedules' },
+            { id: 2, text: 'Topography, access roads, and location of water supplies' },
+            { id: 3, text: 'Airport management offices and terminal layouts' },
+            { id: 4, text: 'Weather data and wind patterns' },
+          ],
+          correctOptionId: 2,
+          explanation: "RFFS grid maps focus on topography, access roads, and water supply for emergency responses.",
+          hint: "The key is related to emergency access."
+        },
+        {
+          id: 6,
+          questionText: 'In case of simultaneous aircraft emergencies at different locations within the airport, how should the RFFS prioritize its response?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'By attending to the aircraft with the most passengers first' },
+            { id: 2, text: 'By following the predetermined priority response plan based on severity' },
+            { id: 3, text: 'By handling the nearest incident first' },
+            { id: 4, text: 'By splitting the team evenly between both incidents' },
+          ],
+          correctOptionId: 2,
+          explanation: "The RFFS should follow a predetermined priority response plan, focusing on the severity of incidents.",
+          hint: "The key is about structured, planned responses rather than proximity or passenger count."
+        },
+        {
+          id: 7,
+          questionText: 'Which of the following factors should be considered when reviewing and updating the RFFS manual?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'International developments in fire fighting technology' },
+            { id: 2, text: 'Changes in passenger demographics' },
+            { id: 3, text: 'Airport parking space availability' },
+            { id: 4, text: 'Local weather patterns' },
+          ],
+          correctOptionId: 1,
+          explanation: "Fire fighting technology is constantly evolving and should be considered when updating the RFFS manual.",
+          hint: "Think about advancements in safety technologies."
+        },
+        {
+          id: 8,
+          questionText: 'What is the recommended approach to managing a large-scale fuel fire on the runway?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'Using water to cool the surrounding area and prevent spread' },
+            { id: 2, text: 'Applying foam to smother the fire and prevent reignition' },
+            { id: 3, text: 'Letting the fire burn out naturally' },
+            { id: 4, text: 'Using sand to cover the fire' },
+          ],
+          correctOptionId: 2,
+          explanation: "Foam is the recommended approach to smother the fire and prevent any further ignition.",
+          hint: "It's more about preventing reignition than simply cooling or covering the area."
+        },
+        {
+          id: 9,
+          questionText: 'Which aspect of an aircraft’s structure is most vulnerable to fire and requires immediate attention from RFF personnel?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'The aircraft’s fuselage' },
+            { id: 2, text: 'The landing gear' },
+            { id: 3, text: 'The tail fin' },
+            { id: 4, text: 'The wings' },
+          ],
+          correctOptionId: 1,
+          explanation: "The fuselage is the most vulnerable part of an aircraft in terms of fire risk and requires immediate attention.",
+          hint: "Think about the central structure of the aircraft where passengers are located."
+        },
+        {
+          id: 10,
+          questionText: 'Why is it important for RFF personnel to be aware of the types of cargo on board an aircraft during a fire emergency?',
+          difficulty: "Hard",
+          options: [
+            { id: 1, text: 'To ensure passenger safety and prevent hazardous material reactions' },
+            { id: 2, text: 'To prioritize the protection of valuable cargo' },
+            { id: 3, text: 'To inform the media accurately' },
+            { id: 4, text: 'To decide whether to extinguish the fire or let it burn out' },
+          ],
+          correctOptionId: 1,
+          explanation: "Knowing the types of cargo helps RFF personnel to prevent hazardous material reactions and protect passengers.",
+          hint: "Consider safety and the risk of dangerous goods during emergencies."
         }
+        ,
+          {
+            id: 11,
+            difficulty:"Hard",
+          questionText: 'What is the role of the Airport Emergency Plan (AEP) in conjunction with the RFFS manual?',
+          options: [
+          { id: 1, text: 'The AEP outlines the strategic response plan, while the RFFS manual provides operational details' },
+          { id: 2, text: 'The AEP provides a budget for RFFS activities' },
+          { id: 3, text: 'The AEP manages air traffic control procedures during an emergency' },
+          { id: 4, text: 'The AEP dictates passenger boarding processes' },
+          ],
+          correctOptionId: 1,
+          },
+          {
+          id: 12,
+          difficulty:"Hard",
+          questionText: 'How should RFF personnel handle the risk of explosion during a rescue operation in a crashed aircraft?',
+          options: [
+          { id: 1, text: 'By evacuating all personnel and letting the fire burn out' },
+          { id: 2, text: 'By maintaining a safe distance while applying cooling agents to the aircraft’s hot spots' },
+          { id: 3, text: 'By entering the aircraft immediately to rescue survivors' },
+          { id: 4, text: 'By focusing on extinguishing external fires first' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 13,
+          difficulty:"Hard",
+          questionText: 'What is the recommended response when encountering pressurized fuel tanks during an aircraft fire?',
+          options: [
+          { id: 1, text: 'Use water to cool the tanks and prevent explosion' },
+          { id: 2, text: 'Avoid the tanks and focus on other parts of the aircraft' },
+          { id: 3, text: 'Vent the tanks to release pressure' },
+          { id: 4, text: 'Smother the tanks with foam to suppress flames' },
+          ],
+          correctOptionId: 1,
+          },
+          {
+          id: 14,
+          difficulty:"Hard",
+          questionText: 'Why must RFF personnel be familiar with the layout of different aircraft types?',
+          options: [
+          { id: 1, text: 'To provide better customer service' },
+          { id: 2, text: 'To know where emergency exits and fuel tanks are located during a fire' },
+          { id: 3, text: 'To understand seating arrangements for passenger comfort' },
+          { id: 4, text: 'To adjust the response time according to the aircraft size' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 15,
+          difficulty:"Hard",
+          questionText: 'Which method is best for extinguishing a fire involving aircraft tires?',
+          options: [
+          { id: 1, text: 'Using foam to smother the fire' },
+          { id: 2, text: 'Applying dry chemical powder to suppress flames' },
+          { id: 3, text: 'Allowing the tires to burn out naturally' },
+          { id: 4, text: 'Using water to cool the tires and prevent explosion' },
+          ],
+          correctOptionId: 4,
+          },
+          {
+          id: 16,
+          difficulty:"Hard",
+          questionText: 'How should the RFFS handle an aircraft fire where the aircraft is carrying hazardous materials?',
+          options: [
+          { id: 1, text: 'Immediately apply water to all areas of the aircraft' },
+          { id: 2, text: 'Isolate the hazardous materials and apply appropriate extinguishing agents' },
+          { id: 3, text: 'Wait for the hazardous materials to burn out' },
+          { id: 4, text: 'Focus on rescuing passengers without regard to the hazardous materials' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 17,
+          difficulty:"Hard",
+          questionText: 'What should RFF personnel do if they encounter a fire in the aircraft’s cargo hold containing flammable liquids?',
+          options: [
+          { id: 1, text: 'Use foam to smother the flames and cool the surrounding area' },
+          { id: 2, text: 'Use water to dilute the liquids' },
+          { id: 3, text: 'Vent the cargo hold to release pressure' },
+          { id: 4, text: 'Allow the fire to burn out while focusing on passenger rescue' },
+          ],
+          correctOptionId: 1,
+          },
+          {
+          id: 18,
+          difficulty:"Hard",
+          questionText: 'Why is it crucial for RFF personnel to monitor the wind direction during an aircraft fire?',
+          options: [
+          { id: 1, text: 'To ensure passengers are not affected by smoke inhalation' },
+          { id: 2, text: 'To determine the best position for deploying foam' },
+          { id: 3, text: 'To avoid having the fire spread to nearby structures' },
+          { id: 4, text: 'To decide whether to extinguish the fire or let it burn out' },
+          ],
+          correctOptionId: 3,
+          },
+          {
+          id: 19,
+          difficulty:"Hard",
+          questionText: 'How should RFF personnel handle a situation where the aircraft’s electrical system is still live during a fire?',
+          options: [
+          { id: 1, text: 'Use non-conductive extinguishing agents like CO2 or dry chemical powder' },
+          { id: 2, text: 'Flood the aircraft with water to short-circuit the system' },
+          { id: 3, text: 'Disconnect the aircraft from all power sources and proceed with foam' },
+          { id: 4, text: 'Allow the system to continue running to power rescue equipment' },
+          ],
+          correctOptionId: 1,
+          },
+          {
+          id: 20,
+          difficulty:"Hard",
+          questionText: 'What is the main challenge of handling a fire involving composite materials in modern aircraft?',
+          options: [
+          { id: 1, text: 'Composite materials burn at a lower temperature' },
+          { id: 2, text: 'Composite materials can release toxic fumes when burning' },
+          { id: 3, text: 'Composite materials are highly explosive' },
+          { id: 4, text: 'Composite materials are resistant to standard extinguishing agents' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 21,
+          difficulty:"Hard",
+          questionText: 'What is the best course of action when RFF personnel encounter a fire in the aircraft’s fuel tanks?',
+          options: [
+          { id: 1, text: 'Apply foam and ensure continuous cooling of the tanks' },
+          { id: 2, text: 'Vent the tanks to release pressure' },
+          { id: 3, text: 'Use water to cool the surrounding areas only' },
+          { id: 4, text: 'Allow the fuel to burn off to reduce explosion risk' },
+          ],
+          correctOptionId: 1,
+          },
+          {
+          id: 22,
+          difficulty:"Hard",
+          questionText: 'How should RFF personnel respond to a situation where the aircraft’s landing gear is on fire?',
+          options: [
+          { id: 1, text: 'Allow the gear to burn out naturally' },
+          { id: 2, text: 'Cool the gear with water and apply foam to smother the flames' },
+          { id: 3, text: 'Use dry chemical powder to extinguish the flames' },
+          { id: 4, text: 'Focus on other areas of the aircraft first' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 23,
+          difficulty:"Hard",
+          questionText: 'Why is it important to maintain a safe distance while applying extinguishing agents during an aircraft fire?',
+          options: [
+          { id: 1, text: 'To avoid damaging the aircraft further' },
+          { id: 2, text: 'To prevent being overwhelmed by toxic fumes or explosion' },
+          { id: 3, text: 'To ensure even distribution of the agent' },
+          { id: 4, text: 'To avoid interference with air traffic control' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 24,
+          difficulty:"Hard",
+          questionText: 'What is the primary concern when dealing with a fire in an aircraft’s passenger cabin?',
+          options: [
+          { id: 1, text: 'Protecting the aircraft’s structure' },
+          { id: 2, text: 'Ensuring the quick evacuation of passengers' },
+          { id: 3, text: 'Minimizing smoke damage to the interior' },
+          { id: 4, text: 'Saving passenger baggage' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 25,
+          difficulty:"Hard",
+          questionText: 'What should RFF personnel do if the aircraft’s engines are still running during a fire?',
+          options: [
+          { id: 1, text: 'Focus on extinguishing the fire near the engines first' },
+          { id: 2, text: 'Shut down the engines before approaching' },
+          { id: 3, text: 'Ignore the engines and focus on the fire in other areas' },
+          { id: 4, text: 'Apply foam directly into the engines' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 26,
+          difficulty:"Hard",
+          questionText: 'How should RFF personnel approach a fire involving the aircraft’s avionics bay?',
+          options: [
+          { id: 1, text: 'Use water to cool the electronics' },
+          { id: 2, text: 'Use non-conductive agents like CO2 or Halon to prevent short circuits' },
+          { id: 3, text: 'Allow the fire to burn out to avoid damaging the equipment' },
+          { id: 4, text: 'Vent the bay to remove smoke' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 27,
+          difficulty:"Hard",
+          questionText: 'What is the priority when handling a fire near an aircraft’s fuel vents?',
+          options: [
+          { id: 1, text: 'Prevent the fire from reaching the fuel tanks by applying foam' },
+          { id: 2, text: 'Use dry powder to cover the vents' },
+          { id: 3, text: 'Ignore the vents and focus on other areas' },
+          { id: 4, text: 'Use water to cool the surrounding area' },
+          ],
+          correctOptionId: 1,
+          },
+          {
+          id: 28,
+          difficulty:"Hard",
+          questionText: 'What is a key consideration when RFF personnel are extinguishing a fire involving lithium batteries in aircraft cargo?',
+          options: [
+          { id: 1, text: 'Lithium batteries can reignite after being extinguished' },
+          { id: 2, text: 'Lithium batteries are not flammable' },
+          { id: 3, text: 'Lithium batteries should be cooled with water' },
+          { id: 4, text: 'Lithium batteries should be buried in sand' },
+          ],
+          correctOptionId: 1,
+          },
+          {
+          id: 29,
+          difficulty:"Hard",
+          questionText: 'How should RFF personnel respond to a fire in an aircraft’s lavatory, considering the confined space?',
+          options: [
+          { id: 1, text: 'Flood the lavatory with water' },
+          { id: 2, text: 'Use a portable fire extinguisher designed for confined spaces, such as Halon' },
+          { id: 3, text: 'Open all doors to ventilate and allow the fire to burn out' },
+          { id: 4, text: 'Use foam to smother the fire' },
+          ],
+          correctOptionId: 2,
+          },
+          {
+          id: 30,
+          difficulty:"Hard",
+          questionText: 'What is the recommended procedure for RFF personnel when dealing with a fuel-fed fire on the runway?',
+          options: [
+          { id: 1, text: 'Apply foam to cover the fuel and prevent ignition' },
+          { id: 2, text: 'Use water to wash the fuel away' },
+          { id: 3, text: 'Contain the fuel using absorbent materials' },
+          { id: 4, text: 'Let the fuel evaporate naturally' },
+          ],
+          correctOptionId: 1,
+          }
       ]
     }
+      
     
 ];
 export default quizzes;
