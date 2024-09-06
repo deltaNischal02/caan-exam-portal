@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import Confetti from 'react-confetti'; // Confetti effect
 
 // Styled components for a modern look
@@ -24,17 +25,27 @@ const ScoreCard = styled.div`
 
 const ScoreProgressBar = styled.div`
   height: 20px;
-  border-radius: 10px;
-  background-color: #e0e0e0;
+  border-radius: 15px;
+  background-color: #f0f0f0;
   margin-top: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  border: 1px solid #e0e0e0; /* Thin border for a clean edge */
 `;
 
 const ProgressFill = styled.div`
   height: 100%;
   width: ${({ scorePercentage }) => scorePercentage}%;
-  background-color: ${({ scorePercentage }) => (scorePercentage >= 70 ? 'green' : 'red')};
-  border-radius: 10px;
+  background: ${({ scorePercentage }) =>
+    scorePercentage >= 70
+      ? 'linear-gradient(90deg, #4caf50, #81c784)' /* Gradient for success */
+      : 'linear-gradient(90deg, #f44336, #e57373)'}; /* Gradient for error */
+  border-radius: 15px;
+  transition: width 0.8s ease-in-out;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* 3D inset shadow for progress */
 `;
+
+
 
 const ScoreText = styled.p`
   font-size: 2rem;
@@ -113,7 +124,7 @@ const QuizResult = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-  const { score = 0, totalQuestions = 0, shuffledQuiz = [], userAnswers = [], difficulty = '' } = location.state || {};
+  const { score =0, totalQuestions = 0, shuffledQuiz = [], userAnswers = [], difficulty = '' } = location.state || {};
   
   const [showConfetti, setShowConfetti] = useState(false);
   const scorePercentage = (score / totalQuestions) * 100;
@@ -147,8 +158,13 @@ const QuizResult = () => {
         <h3>Your Score</h3>
         <ScoreText scorePercentage={scorePercentage}>{score} / {totalQuestions}</ScoreText>
         <ScoreProgressBar>
-          <ProgressFill scorePercentage={scorePercentage} />
-        </ScoreProgressBar>
+      <ProgressFill
+        scorePercentage={scorePercentage}
+        initial={{ width: 0 }} // Starting from 0 width
+        animate={{ width: `${scorePercentage}%` }} // Animating to score percentage
+        transition={{ duration: 20, ease: "easeInOut" }} // Smooth animation
+      />
+    </ScoreProgressBar>
         <p>Correct Answers: {score} out of {totalQuestions}</p>
         <DifficultyBadge difficulty={difficulty}>Difficulty: {difficulty}</DifficultyBadge>
       </ScoreCard>
