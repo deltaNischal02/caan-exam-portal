@@ -5,6 +5,7 @@ import quizzes from '../data/quizdata'; // Import the quiz data
 import { useUserProgress } from '../contexts/UserProgressContext';
 import ProgressBar from '../components/ProgressBar'; // Progress bar component
 import Loader from '../components/Loader'; // Loader component for showing loading state
+import { AiOutlineClose } from 'react-icons/ai'; // Importing close icon
 
 // Utility to shuffle an array (used for randomizing questions and options)
 const shuffleArray = (array) => array.sort(() => Math.random() - 0.5);
@@ -124,6 +125,51 @@ const DarkModeToggle = styled.button`
     background-color: #0056b3;
   }
 `;
+const HintButton = styled.button`
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #ffc107;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #e0a800;
+  }
+`;
+
+const ExplanationButton = styled.button`
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #17a2b8;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #138496;
+  }
+`;
+
+const ExplanationModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: ${({ darkMode }) => (darkMode ? '#444' : '#fff')};
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  color: ${({ darkMode }) => (darkMode ? '#fff' : '#333')};
+  z-index: 1000;
+`;
+
 
 const QuizPage = () => {
   const location = useLocation();
@@ -144,7 +190,8 @@ const QuizPage = () => {
   const [currentDifficulty, setCurrentDifficulty] = useState(difficulty); // Track the current difficulty level
   const [correctCount, setCorrectCount] = useState(0); // Track how many correct answers in a row
   const [wrongCount, setWrongCount] = useState(0); // Track wrong answers in a row
-
+  const [showExplanation, setShowExplanation] = useState(false); // Show explanation modal
+  const [showHint, setShowHint] = useState(false); // Show hint
   const { progress, updateProgress } = useUserProgress(); // User progress tracking
   const [loading, setLoading] = useState(true); // Loading state to simulate data fetching
   const [infoMessage, setInfoMessage] = useState(''); // Message to display if selected questions exceed available
@@ -235,7 +282,7 @@ const QuizPage = () => {
 
   const nextQuestion = () => {
     if (isCorrect) {
-      setScore(score + 1); // Increment score if the answer is correct
+      setScore(score+1); // Increment score if the answer is correct
     }
     setSelectedOption(null); // Reset selected option for next question
     setIsCorrect(null); // Reset correct/incorrect state
@@ -243,6 +290,9 @@ const QuizPage = () => {
     if (currentQuestionIndex < shuffledQuiz.questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1); // Move to the next question
       setTimeLeft(60); // Reset the timer for the next question
+      setSelectedOption(null);
+      setIsCorrect(null);
+      setShowHint(false); // Reset hint display on next question
     } else {
       finishQuiz(); // If last question is reached, finish the quiz
     }
@@ -266,6 +316,21 @@ const QuizPage = () => {
     });
   };
   
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const handleShowExplanation = () => {
+    setShowExplanation(true);
+  };
+
+  const handleHideExplanation = () => {
+    setShowExplanation(false);
+  };
+
+  const handleShowHint = () => {
+    setShowHint(true);
+  };
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode); // Toggle dark mode
@@ -276,49 +341,58 @@ const QuizPage = () => {
 
   return (
     <QuizContainer darkMode={darkMode}>
-      <DarkModeToggle onClick={toggleDarkMode}>
-        {darkMode ? 'Light Mode' : 'Dark Mode'}
-      </DarkModeToggle>
-
-      {/* Display message if selected questions exceed available */}
-      {infoMessage && <InfoText>{infoMessage}</InfoText>}
-
-      {/* Display the current question number out of the total */}
-      <QuestionCounter>Question {currentQuestionIndex + 1} of {totalQuestions}</QuestionCounter>
-
-      {/* Timer */}
-      <Timer darkMode={darkMode}>Time left: {timeLeft} seconds</Timer>
-
-      {/* Progress Bar */}
-      <ProgressBar progress={progressPercentage} />
-
-      {/* Question and options */}
-      <QuestionText>{shuffledQuiz.questions[currentQuestionIndex].questionText}</QuestionText>
-      <OptionsList>
-        {shuffledQuiz.questions[currentQuestionIndex].options.map((option) => (
-          <OptionButton
-            key={option.id}
-            onClick={() => handleOptionClick(option.id)}
-            disabled={selectedOption !== null}
-            className={
-              selectedOption === option.id
-                ? isCorrect
-                  ? 'correct'
-                  : 'incorrect'
-                : ''
-            }
-            darkMode={darkMode}
-          >
-            {option.text}
-          </OptionButton>
-        ))}
-      </OptionsList>
-
-      {/* Next question button */}
-      <NextButton onClick={nextQuestion} disabled={!selectedOption}>
-        Next
-      </NextButton>
-    </QuizContainer>
+    <DarkModeToggle onClick={handleDarkModeToggle}>
+      {darkMode ? 'Light Mode' : 'Dark Mode'}
+    </DarkModeToggle>
+    <QuestionCounter>
+      Question {currentQuestionIndex + 1} of {shuffledQuiz.questions.length}
+    </QuestionCounter>
+    <Timer darkMode={darkMode}>Time Left: {timeLeft}s</Timer>
+    {infoMessage && <InfoText>{infoMessage}</InfoText>}
+    <QuestionText>{shuffledQuiz.questions[currentQuestionIndex].questionText}</QuestionText>
+    <OptionsList>
+      {shuffledQuiz.questions[currentQuestionIndex].options.map((option) => (
+        <OptionButton
+          key={option.id}
+          darkMode={darkMode}
+          onClick={() => handleOptionClick(option.id)}
+          className={
+            selectedOption === option.id
+              ? isCorrect
+                ? 'correct'
+                : 'incorrect'
+              : ''
+          }
+          disabled={selectedOption !== null}
+        >
+          {option.text}
+        </OptionButton>
+      ))}
+    </OptionsList>
+    <HintButton onClick={handleShowHint} disabled={selectedOption !== null}>
+      Show Hint
+    </HintButton>
+    <ExplanationButton onClick={handleShowExplanation} disabled={selectedOption === null}>
+      Show Explanation
+    </ExplanationButton>
+    <NextButton onClick={nextQuestion} disabled={selectedOption === null}>
+      Next Question
+    </NextButton>
+    {showExplanation && (
+      <ExplanationModal darkMode={darkMode}>
+        <h3>Explanation</h3>
+        <p>{shuffledQuiz.questions[currentQuestionIndex].explanation}</p>
+        <button onClick={handleHideExplanation}>Close</button>
+      </ExplanationModal>
+    )}
+    {showHint && (
+      <ExplanationModal darkMode={darkMode}>
+        <h3>Hint</h3>
+        <p>{shuffledQuiz.questions[currentQuestionIndex].hint}</p>
+        <button onClick={() => setShowHint(false)}>Close</button>
+      </ExplanationModal>
+    )}
+  </QuizContainer>
   );
 };
 
