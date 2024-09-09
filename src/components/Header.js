@@ -1,17 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'; // Use NavLink instead of Link
 import styled from 'styled-components';
-import { FaHome, FaGraduationCap, FaQuestionCircle, FaUser, FaBell } from 'react-icons/fa';
+import { FaHome, FaGraduationCap, FaQuestionCircle, FaUser, FaBell, FaRegQuestionCircle} from 'react-icons/fa';
 import CAANLogo from '../assets/CAAN_LOGO.png';
 
 const HeaderWrapper = styled.header`
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #f0f4f8;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  height: 5rem;
+  background: rgba(255, 255, 255, 0.1); /* Transparent white */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure it stays above other content */
+  // color: #ffffff;
+  height: 3rem;
+  opacity: 100%;
 `;
 
 const Logo = styled.div`
@@ -19,6 +26,7 @@ const Logo = styled.div`
     max-width: 200px;
     height: auto;
     cursor: pointer;
+    img-shadow: 0 4px 6px rgba(0, 0, 5, 5);
   }
 `;
 
@@ -47,22 +55,30 @@ const NavLinks = styled.nav`
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-    font-size: 1.0rem; /* Default font size for inactive state */
-    transition: color 0.3s ease, font-size 0.3s ease;
+    font-size: 1.5rem; /* Default font size for inactive state */
+    transition: color 1s ease, font-size 1s ease;
+      font-weight: 600; /* Make active links bold */
+
 
     &.inactive {
-      color: #555; /* Gray for inactive links */
+      // color: #555; /* Gray for inactive links */
+      color:black;
       font-size: 1.2rem; /* Slightly bigger font for inactive links */
+      font-weight: 600; /* Make active links bold */
+
     }
 
     &.active {
       color: #0073e6; /* Bright blue for active links */
-      font-size: 1.5rem; /* Smaller font for active links */
+      font-size: 1.2rem; /* Smaller font for active links */
       font-weight: 600; /* Make active links bold */
     }
 
     &:hover {
       color: #005bb5; /* Darker blue on hover */
+    }
+      svg {
+      margin-right: 0.1rem; /* Space between icon and text */
     }
     
   
@@ -93,19 +109,19 @@ const Header = () => (
     </Logo>
 
     <TextandLinkWrapper>
-      <CompanyText>Civil Aviation Authority of Nepal</CompanyText>
+      <CompanyText>Civil Aviation</CompanyText>
       <NavLinks>
         <NavLink to="/" exact activeClassName="active" className="inactive">
           <FaHome /> Home
         </NavLink>
         <NavLink to="/training" activeClassName="active" className="inactive">
-          <FaGraduationCap /> Training
+          <FaGraduationCap /> Training Material
         </NavLink>
         <NavLink to="/quizzes" activeClassName="active" className="inactive">
-          <FaQuestionCircle /> Quizzes
+          <FaRegQuestionCircle /> Quizzes
         </NavLink>
         <NavLink to="/profile" activeClassName="active" className="inactive">
-          <FaUser /> Profile
+          <FaRegQuestionCircle /> Help
         </NavLink>
       </NavLinks>
     </TextandLinkWrapper>
