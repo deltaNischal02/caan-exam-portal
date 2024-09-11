@@ -4,14 +4,20 @@ import { motion } from 'framer-motion';
 
 const CardContainer = styled(motion.div)`
   background-color: #f9f9f9;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;       /* Balanced padding for content spacing */
   margin: 1rem;          /* Margin between cards */
   width: 300px;          /* Adjusted card width */
   text-align: center;
   cursor: pointer;
-  border:1px solid purple;
+  border:2px solid #003366;
+  &:hover{
+  border-radius:10px;
+    border:2px solid #003366 ;
+    border-image: linear-gradient(90deg, #2CB67D, #3333ff) 1;
+  }
+  
 `;
 
 const IconWrapper = styled.div`
@@ -25,11 +31,12 @@ const Title = styled.h2`
 `;
 
 const Description = styled.p`
-  font-size: ${({ descriptionFontSize }) => descriptionFontSize || '0.8rem'}; /* Adjusted description size */
+  // font-size: ${({ descriptionFontSize }) => descriptionFontSize || '0.8rem'}; /* Adjusted description size */
   margin-bottom: 0;        /* No margin needed below description */
 `;
 
-const Card = ({ icon, title, description, whileHover, onClick, titleFontSize, descriptionFontSize, iconFontSize }) => (
+
+const Card = ({ icon, title, description, whileHover, onClick, titleFontSize, descriptionFontSize, iconFontSize}) => (
   <CardContainer whileHover={whileHover} onClick={onClick}>
     <IconWrapper iconFontSize={iconFontSize}>{icon}</IconWrapper>
     <Title titleFontSize={titleFontSize}>{title}</Title>
