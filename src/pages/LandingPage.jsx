@@ -23,7 +23,7 @@ const HeroSection = styled(motion.section)`
 const HeroText = styled(motion.h1)`
   font-size: 6rem; /* Enlarged text */
   font-weight: bold;
-  background: linear-gradient(90deg, #2CB67D, #3333ff); /* Gradient colors */
+  background: linear-gradient(90deg, #ffffff, #3333ff); /* Gradient colors */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: white;
@@ -31,26 +31,16 @@ const HeroText = styled(motion.h1)`
   margin-bottom:1rem;
   text-shadow: 0 0 10px #2CB67D rgba(255, 0, 204, 0.8), 0 0 20px rgba(255, 0, 204, 0.6), 0 0 30px rgba(51, 51, 255, 0.4);
 
-  // animation: glow 1.5s infinite alternate; /* Glow animation */
-
-//   @keyframes glow {
-//     0% {
-    
-//       text-shadow: 0 0 1px #2CB67D, 0 0 2px #2CB67D, 0 0 3px #3333ff;
-//     }
-//       60%{
-//       text-shadow: 0 0 1px #2CB67D, 0 0 2px #2CB67D, 0 0 3px #3333ff;
-      
-//       }
-//     100% {
-//       text-shadow: 0 0 2px #3333ff, 0 0 4px #3333ff, 0 0 6px #2CB67D;
-//     }
-//   }
-// `;
+`;
 
 const HeroSubText = styled(motion.p)`
   font-size: 3rem; /* Increase font size */
   margin-top: 1rem;
+  color:white;
+  background: linear-gradient(90deg, #ffffff, #3333ff); /* Gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
 `;
 
 const FeaturesSection = styled.section`
@@ -176,6 +166,7 @@ const LandingPage = () => {
               icon={<FaBook />}
               title="Access Training Materials"
               description="Find all the resources you need in one place."
+              whileHover={{scale:1.1}}
             />
           </motion.div>
           <motion.div
@@ -188,6 +179,8 @@ const LandingPage = () => {
               icon={<FaCheckCircle />}
               title="Take Quizzes and Exams"
               description="Test your knowledge with tailored quizzes."
+              whileHover={{scale:1.1}}
+
             />
           </motion.div>
           <motion.div
@@ -200,6 +193,8 @@ const LandingPage = () => {
               icon={<FaChartLine />}
               title="Track Your Progress"
               description="Monitor your learning journey."
+              whileHover={{scale:1.1}}
+
             />
           </motion.div>
         </CardContainer>
